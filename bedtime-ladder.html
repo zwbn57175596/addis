@@ -197,6 +197,9 @@ p{margin:0}
 .cell svg{display:block;width:17mm;height:17mm}
 .writein{justify-content:center;font-size:3mm;color:#CFCBBF}
 
+.grid > .phase-end{border-bottom:.9mm solid var(--s-ink)}
+.task .stage-tag{display:inline-block;font-size:2.6mm;color:var(--s-muted);border:.3mm solid var(--s-rule);padding:0 1.4mm;margin-left:2mm;vertical-align:1mm}
+
 /* evening footer */
 .ev-foot{flex:1;display:flex;align-items:center;gap:6mm;padding-top:4mm}
 .slot{
@@ -245,6 +248,8 @@ p{margin:0}
 @media (max-width:760px){.coach{grid-template-columns:1fr}}
 
 .tonight{display:flex;flex-direction:column;gap:16px}
+.start-line{margin-top:9px;font-size:.9rem;color:var(--muted)}
+.start-line b{font-family:var(--mono);font-size:1.2rem;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
 .tonight .big{
   font-family:var(--mono);font-size:3.3rem;font-weight:600;
   line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;
@@ -479,7 +484,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
       <p class="eyebrow">Bedtime Fading · 第 1 阶段</p>
       <h1>晚安阶梯</h1>
     </div>
-    <p class="lede">三个阶段，一次只上一个：先把上床时间从 23:00 推到 21:15，再把备料交还给他，最后才碰练字、架子鼓和编程。下面十张打印件按阶段分好了——<b style="color:var(--ink);font-weight:500">现在只打 01–04 加一张 09 奖励券</b>。</p>
+    <p class="lede">三个阶段，一次只上一个：先把上床时间从 23:00 推到 21:15，再把备料交还给他，最后才碰练字、架子鼓和编程。下面十张打印件按阶段分好了——<b style="color:var(--ink);font-weight:500">现在只打 01–04 加一张 10 奖励券</b>。</p>
     <div>
       <div class="ladder" role="img" aria-label="八级阶梯，当前在第一级">
         <i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
@@ -495,6 +500,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
       <div>
         <p class="eyebrow">今晚上床时间</p>
         <div class="big" data-tonight>23:00</div>
+        <p class="start-line"><b data-start>22:00</b> 开始洗澡<span> · 睡前流程约 60 分钟</span></p>
       </div>
       <div class="step-line">
         <span>第 <b data-step>1</b> 步 / 共 8 步</span>
@@ -566,7 +572,8 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
       <span class="tag now">现在做这个</span>
     </div>
     <p class="unlock">先把觉补回来，这一阶段<b>不放任何学习任务</b>。每天欠 1–2 小时觉的状态下执行功能本身就不够用，这时候加任务，两头都会崩。
-    <br>奖励券（打印件 09）从这一阶段就要打：<b>攒 5 张没用掉的通行券</b> 换 1 张「玩的时间」券，<b>攒满 7 张</b>（一整周没起来）换 1 张「自主权」券。</p>
+    <br>下午流程条（打印件 05）也在这一阶段：粗线以上三项——到家、加餐、<b>出去动一动</b>——本身就是睡眠协议的一部分，傍晚动过晚上才睡得着；粗线以下先空着。
+    <br>奖励券（打印件 10）从这一阶段就要打：<b>攒 5 张没用掉的通行券</b> 换 1 张「玩的时间」券，<b>攒满 7 张</b>（一整周没起来）换 1 张「自主权」券。</p>
 
   <!-- ===== 1 · 晚上流程条 ===== -->
   <section class="block">
@@ -589,7 +596,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
             <div class="s-head">
               <div>
                 <div class="s-title" style="font-size:9mm">🌙 我的晚上</div>
-                <div class="s-sub">做完一件，贴一颗星 · 第 ____ 周</div>
+                <div class="s-sub">做完一件，贴一颗星 · 整套约 60 分钟 · 第 ____ 周</div>
               </div>
               <div class="s-name">名字 <span class="line"></span></div>
             </div>
@@ -704,6 +711,48 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
     </div>
   </section>
 
+  <!-- ===== 5 · 下午流程条 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">打印件 05</p>
+        <h2>下午流程条</h2>
+        <div class="meta">
+          <span>A4 <b>横版</b></span>
+          <span>贴 <b>书桌前 / 客厅</b></span>
+          <span>每周换 <b>一张</b></span>
+        </div>
+      </div>
+      <button class="btn" type="button" data-print="sheet-afternoon">打印这张</button>
+    </div>
+    <div class="frame" id="sheet-afternoon" data-orient="landscape">
+      <div class="scaler">
+        <div class="sheet land">
+          <div class="s-pad">
+            <div class="s-head">
+              <div>
+                <div class="s-title" style="font-size:9mm">🌆 我的下午</div>
+                <div class="s-sub">到家 16:40 → 晚饭 18:30 · 中间 1 小时 50 分 · 第 ____ 周</div>
+              </div>
+              <div class="s-name">名字 <span class="line"></span></div>
+            </div>
+            <div class="grid af-grid"></div>
+            <div class="ev-foot">
+              <div class="rule-note" style="border-left:.5mm solid var(--s-rule)">
+                <b>先玩再干活。</b>他刚上完 8 小时学，一进门就要求坐下写字，
+                十次有九次会崩。「出去动一动」不只是休息——傍晚动过，晚上才睡得着。
+              </div>
+              <div class="rule-note" style="border-left:.5mm solid var(--s-rule)">
+                <b>粗线以下先空着。</b>「今天练什么」到第 3 阶段才勾，
+                「明日装备」到第 2 阶段才勾。现在做到作业就收工，剩下的时间全是他的。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== 推进节奏 ===== -->
   <section class="block">
     <div class="block-head">
@@ -757,7 +806,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
   <section class="block">
     <div class="block-head">
       <div class="grow">
-        <p class="eyebrow">打印件 05</p>
+        <p class="eyebrow">打印件 06</p>
         <h2>明日装备检查</h2>
         <div class="meta">
           <span>A4 竖版 · <b>裁成两张 A5</b></span>
@@ -782,7 +831,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
   <section class="block">
     <div class="block-head">
       <div class="grow">
-        <p class="eyebrow">打印件 06</p>
+        <p class="eyebrow">打印件 07</p>
         <h2>装备袋清单卡</h2>
         <div class="meta">
           <span>A4 竖版 · <b>4 张标签</b></span>
@@ -879,7 +928,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
   <section class="block">
     <div class="block-head">
       <div class="grow">
-        <p class="eyebrow">打印件 07</p>
+        <p class="eyebrow">打印件 08</p>
         <h2>每日三卡表</h2>
         <div class="meta">
           <span>A4 <b>横版</b></span>
@@ -921,7 +970,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
   <section class="block">
     <div class="block-head">
       <div class="grow">
-        <p class="eyebrow">打印件 08</p>
+        <p class="eyebrow">打印件 09</p>
         <h2>任务卡池</h2>
         <div class="meta">
           <span>A4 竖版 · <b>18 张</b></span>
@@ -950,7 +999,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
   <section class="block">
     <div class="block-head">
       <div class="grow">
-        <p class="eyebrow">打印件 09</p>
+        <p class="eyebrow">打印件 10</p>
         <h2>奖励券</h2>
         <div class="meta">
           <span>A4 竖版 · <b>8 张</b></span>
@@ -978,7 +1027,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
   <section class="block">
     <div class="block-head">
       <div class="grow">
-        <p class="eyebrow">打印件 10</p>
+        <p class="eyebrow">打印件 11</p>
         <h2>周结算卡</h2>
         <div class="meta">
           <span>A4 竖版 · <b>裁成两张 A5</b></span>
@@ -1022,24 +1071,24 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
       <table class="protocol">
         <thead><tr><th>频率</th><th>打印件</th><th>说明</th></tr></thead>
         <tbody>
-          <tr><td>只印一次</td><td>04 阶梯尺 · 06 装备袋标签 · 08 任务卡池</td><td class="n">3 张</td></tr>
-          <tr><td>每周</td><td>01 晚上流程条 · 07 每日三卡表</td><td class="n">2 张</td></tr>
+          <tr><td>只印一次</td><td>04 阶梯尺 · 07 装备袋标签 · 09 任务卡池</td><td class="n">3 张</td></tr>
+          <tr><td>每周</td><td>01 晚上流程条 · 08 每日三卡表</td><td class="n">2 张</td></tr>
           <tr><td>看情况</td><td>03 通行券</td><td class="n">兑掉的会还给你再发，只有真用掉的才消耗——头几周约 1 张 / 周，后面越来越少</td></tr>
-          <tr><td>每 2 周</td><td>02 早上流程条 · 05 装备检查 · 10 周结算卡</td><td class="n">1.5 张 / 周</td></tr>
-          <tr><td>每 4 周</td><td>09 奖励券</td><td class="n">0.25 张 / 周</td></tr>
+          <tr><td>每 2 周</td><td>02 早上流程条 · 06 装备检查 · 11 周结算卡</td><td class="n">1.5 张 / 周</td></tr>
+          <tr><td>每 4 周</td><td>10 奖励券</td><td class="n">0.25 张 / 周</td></tr>
         </tbody>
       </table>
     </div>
     <p class="lede" style="margin-top:14px">
-      <b style="color:var(--ink);font-weight:500">第 1 阶段现在只要打 5 张</b>：01、02、03、04，加一张 09 奖励券（通行券攒够了要换的就是它）。
-      想一次备齐 8 周就是 21 张（01 ×8、02 ×4、03 ×7、04 ×1、09 ×1）。
-      三个阶段全跑起来后约 <b style="color:var(--ink);font-weight:500">4 张 / 周</b>，一年 200 张出头——半包 A4 都不到。
+      <b style="color:var(--ink);font-weight:500">第 1 阶段现在要打 6 张</b>：01–05，加一张 10 奖励券（通行券攒够了要换的就是它）。
+      想一次备齐 8 周就是 29 张（01 ×8、05 ×8、02 ×4、03 ×7、04 ×1、10 ×1）。
+      三个阶段全跑起来后约 <b style="color:var(--ink);font-weight:500">5 张 / 周</b>，一年 260 张左右——半包 A4 出头。
     </p>
   </section>
 
   <footer>
     第 1 阶段跑满 4 周，如果入睡仍然要 45 分钟以上，建议看一次儿科——排查打鼾／腺样体、不安腿、或焦虑。<br>
-    第 2、3 阶段的打印件放在这里是让你看到全貌，不是让你现在打——只有 09 奖励券例外，第 1 阶段就要用。一次上一个阶段，前一个稳住了再往下走。
+    第 2、3 阶段的打印件放在这里是让你看到全貌，不是让你现在打——只有 10 奖励券例外，第 1 阶段就要用。一次上一个阶段，前一个稳住了再往下走。
   </footer>
 
 </div>
@@ -1069,6 +1118,11 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
       grid.appendChild(el("div","dh" + (d.we ? " we" : ""), d.t));
     });
   }
+  /* 一整行（标签 + 7 天）打上阶段分界 */
+  function markPhaseEnd(grid){
+    var k = grid.children, n = k.length;
+    for (var i = n - 8; i < n; i++) k[i].classList.add("phase-end");
+  }
   function taskRow(grid, icon, name, note, kind){
     grid.appendChild(el("div","task",
       '<span class="ic">' + icon + '</span><span>' + name +
@@ -1081,11 +1135,24 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
   /* ---- 1. evening grid ---- */
   var ev = document.querySelector(".ev-grid");
   dayHeaders(ev);
-  taskRow(ev, "🛁", "洗澡", "");
-  taskRow(ev, "🦷", "换睡衣 · 刷牙", "");
-  taskRow(ev, "📖", "读书", "关灯前的最后一件事");
-  taskRow(ev, "🛏️", "关灯躺下", "");
+  taskRow(ev, "🛁", "洗澡", "15 分钟");
+  taskRow(ev, "🦷", "换睡衣 · 刷牙", "10 分钟");
+  taskRow(ev, "📖", "读书", "15 分钟 · 关灯前最后一件");
+  taskRow(ev, "🛏️", "关灯躺下", "10 分钟 · 到点就关");
   taskRow(ev, "🎫", "通行券没用掉", "攒 5 张换奖励券");
+
+  /* ---- 5. 下午流程条：16:40 到家 → 18:30 晚饭，把这 110 分钟排出结构 ---- */
+  var af = document.querySelector(".af-grid");
+  af.style.gridTemplateColumns = "62mm repeat(7,1fr)";
+  af.style.gridTemplateRows = "9mm repeat(6,23mm)";
+  dayHeaders(af);
+  taskRow(af, "🎒", "放书包 · 洗手", "5 分钟");
+  taskRow(af, "🍎", "吃点东西", "10 分钟 · 放学是真的饿");
+  taskRow(af, "🏃", "出去动一动", "40 分钟 · 对晚上睡着最有帮助");
+  taskRow(af, "📚", "作业", "30 分钟");
+  markPhaseEnd(af);                       // ← 第 1 阶段做到这里
+  taskRow(af, "✍️", "今天练什么", "10 分钟<span class=\'stage-tag\'>第 3 阶段</span>");
+  taskRow(af, "📦", "明日装备", "15 分钟<span class=\'stage-tag\'>第 2 阶段</span>");
 
   /* ---- 2. morning A5 ×2 ---- */
   document.querySelectorAll("[data-morning]").forEach(function(box){
@@ -1187,7 +1254,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
 
     var foot = el("div","rule-note");
     foot.style.cssText = "margin-top:3.5mm;border-left:.5mm solid var(--s-rule);padding-left:4mm;font-size:3.1mm";
-    foot.innerHTML = '<b>装备袋：</b>练字袋 · 编程包 · 架子鼓包 · 书包，各贴一张清单卡（打印件 06），对着勾。';
+    foot.innerHTML = '<b>装备袋：</b>练字袋 · 编程包 · 架子鼓包 · 书包，各贴一张清单卡（打印件 07），对着勾。';
     box.appendChild(foot);
   });
 
@@ -1362,6 +1429,10 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
   function defaultWake(s){ var d = dowOf(s); return (d === 0 || d === 6) ? "08:00" : "07:30"; }
   function mins(t){ var p = String(t).split(":"); return (+p[0]) * 60 + (+p[1]); }
   function span(a, b){ var d = mins(b) - mins(a); return d < 0 ? d + 1440 : d; }
+  function shift(t, delta){
+    var v = (mins(t) + delta) % 1440; if (v < 0) v += 1440;
+    return pad2(Math.floor(v / 60)) + ":" + pad2(v % 60);
+  }
   function mmdd(s){ var p = s.split("-"); return (+p[1]) + "/" + (+p[2]); }
   function hrs(m){ return (m / 60).toFixed(1).replace(/\.0$/, ""); }
 
@@ -1391,6 +1462,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
     var tonight = TIMES[d.step - 1];
 
     q("[data-tonight]").textContent = tonight;
+    q("[data-start]").textContent = shift(tonight, -60);   // 睡前流程 60 分钟，跟着推进一起前移
     q("[data-step]").textContent = d.step;
 
     var pips = "";
