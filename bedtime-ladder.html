@@ -331,6 +331,41 @@ p{margin:0}
 .unlock{margin-top:10px;font-size:.9rem;color:var(--muted);max-width:62ch}
 .unlock b{color:var(--ink);font-weight:500}
 
+/* ---------- 一天的时间表（约束，不打卡） ---------- */
+.tt{flex:1;display:flex;flex-direction:column;padding-top:2mm}
+.tt-sec{padding:3.6mm 0;border-top:.35mm solid var(--s-hair);display:flex;gap:5mm}
+.tt-sec:first-child{border-top:0}
+.tt-hd{flex:0 0 32mm;display:flex;align-items:flex-start;gap:2.5mm;font-size:4.4mm;font-weight:700;padding-top:.5mm}
+.tt-hd .ic{font-size:6.4mm;line-height:1}
+.tt-body{flex:1;display:flex;flex-direction:column;gap:2.5mm}
+.tt-row{display:flex;align-items:baseline;gap:4mm;font-size:4.6mm;line-height:1.35}
+.tt-row .t{flex:0 0 23mm;font-family:var(--mono);font-weight:600;font-variant-numeric:tabular-nums}
+.tt-row .t.blank{border-bottom:.4mm solid var(--s-rule);height:5mm}
+.tt-row .w{flex:1}
+.tt-row .d{font-size:3.5mm;color:var(--s-muted);white-space:nowrap}
+.tt-row small{display:block;font-size:3mm;color:var(--s-muted);margin-top:.6mm}
+.tt-note{font-size:3.2mm;color:var(--s-muted);margin-top:1.2mm;line-height:1.4}
+.tt-ex{margin-top:3mm;border:.7mm solid var(--s-ink);padding:4mm 5mm}
+.tt-ex .cap{font-size:4mm;font-weight:700;letter-spacing:.08em;margin-bottom:2.5mm}
+.tt-ex-row{display:flex;align-items:baseline;gap:4mm;font-size:3.9mm;padding:1.7mm 0;border-top:.3mm solid var(--s-hair)}
+.tt-ex-row:first-of-type{border-top:0}
+.tt-ex-row .day{flex:0 0 34mm;font-weight:700}
+.tt-ex-row .tm{flex:0 0 18mm;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.tt-ex-row .ev{flex:1}
+.tt-ex-row .ev small{color:var(--s-muted);font-size:3.3mm}
+
+/* ---------- 打卡表（激励，3 项 × 7 天） ---------- */
+.ck-slot{flex-direction:column;align-items:flex-start;justify-content:center;gap:1.5mm;padding-left:3.5mm;padding-right:3mm}
+.ck-slot .box{width:54mm;height:14mm;border:.4mm dashed var(--s-rule);display:flex;align-items:center;justify-content:center;font-size:2.9mm;color:#CFCBBF}
+.ck-slot .hint{font-size:2.8mm;color:var(--s-muted)}
+.ck-sum{display:grid;border-left:.3mm solid var(--s-hair)}
+.ck-sum > *{border-right:.3mm solid var(--s-hair);border-bottom:.3mm solid var(--s-hair);display:flex;align-items:center;justify-content:center;font-size:3mm;color:#CFCBBF;line-height:1;overflow:hidden}
+.ck-sum .lb{justify-content:flex-start;padding-left:3.5mm;color:var(--s-muted);font-size:3.3mm;font-weight:500;white-space:nowrap}
+.ck-qs{flex:1;display:flex;gap:5mm;padding-top:4mm}
+.ck-q{flex:1;font-size:3.3mm}
+.ck-q b{display:block;font-weight:700;margin-bottom:1.5mm}
+.ck-q .line{display:block;border-bottom:.35mm solid var(--s-hair);height:6mm}
+
 /* ---------- bedtime ladder ruler ---------- */
 .lad{flex:1;display:flex;flex-direction:column-reverse;justify-content:flex-start;padding-top:3mm}
 .lad-step{display:flex;align-items:center;height:29mm}
@@ -365,11 +400,20 @@ p{margin:0}
 .rw .ft{border-top:.35mm solid #D9D6CC;padding-top:2mm;display:flex;justify-content:space-between;font-size:2.8mm;color:var(--s-muted)}
 
 /* ---------- task pool ---------- */
-.pool-grid{display:grid;grid-template-columns:repeat(3,63mm);grid-template-rows:repeat(6,44mm);flex:1}
-.pool{border:.5mm solid var(--s-ink);margin:1mm;padding:3mm;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2mm;text-align:center}
-.pool .ic{font-size:8mm;line-height:1}
-.pool .nm{font-size:3.6mm;font-weight:500;line-height:1.3}
-.pool .amt{font-size:2.8mm;color:var(--s-muted)}
+.pool-grid{display:grid;grid-template-columns:repeat(3,62mm);grid-template-rows:repeat(8,32mm);flex:1}
+.pool{border:.5mm solid var(--s-ink);margin:1mm;padding:2.5mm 3mm;display:flex;align-items:center;gap:2.5mm}
+.pool .ic{flex:0 0 8mm;font-size:6mm;line-height:1;text-align:center}
+.pool .nm{font-size:3.5mm;font-weight:500;line-height:1.25}
+.pool .tag{font-size:2.6mm;color:var(--s-muted);display:block;margin-top:.5mm}
+.pool.blank .nm{color:#CFCBBF}
+
+/* ---------- 毕业榜 ---------- */
+.grad{flex:1;display:flex;flex-direction:column;padding-top:3mm}
+.grad-row{display:flex;align-items:center;gap:5mm;height:29mm;border-bottom:.3mm solid var(--s-hair)}
+.grad-row .no{flex:0 0 7mm;font-family:var(--mono);font-size:3.6mm;color:#CFCBBF}
+.grad-row .slot{flex:0 0 64mm;height:24mm;border:.4mm dashed var(--s-rule);display:flex;align-items:center;justify-content:center;font-size:2.9mm;color:#CFCBBF}
+.grad-row .when{flex:1;display:flex;align-items:baseline;gap:2mm;font-size:3.6mm;color:var(--s-muted)}
+.grad-row .when .line{flex:1;border-bottom:.35mm solid var(--s-hair);height:5mm}
 
 /* ---------- daily sheet: rotation cell + estimate row ---------- */
 .rot{flex-direction:column;gap:1mm;justify-content:center}
@@ -482,7 +526,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
 
   <header class="masthead">
     <div>
-      <p class="eyebrow">Bedtime Fading · 第 1 阶段</p>
+      <p class="eyebrow">Bedtime Fading · 睡眠协议</p>
       <h1>晚安阶梯</h1>
     </div>
     <p class="lede">三个阶段，一次只上一个：先把上床时间从 23:00 推到 21:15，再把备料交还给他，最后才碰练字、架子鼓和编程。下面十张打印件按阶段分好了——<b style="color:var(--ink);font-weight:500">现在只打 01–04 加一张 10 奖励券</b>。</p>
@@ -491,7 +535,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
         <i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
       </div>
       <div class="ladder-note"><span>23:00 起点</span><span>21:15 目标</span></div>
-      <p class="eyebrow" style="margin-top:10px">第 1 阶段 · 上床时间 8 步</p>
+      <p class="eyebrow" style="margin-top:10px">上床时间 · 8 步</p>
     </div>
   </header>
 
@@ -569,122 +613,61 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
 
   <section class="stage">
     <div class="stage-head">
-      <h2>第 1 阶段 · 睡眠</h2>
-      <span class="tag now">现在做这个</span>
+      <h2>约束 · 时间表</h2>
+      <span class="tag now">不打卡</span>
     </div>
-    <p class="unlock">先把觉补回来，这一阶段<b>不放任何学习任务</b>。每天欠 1–2 小时觉的状态下执行功能本身就不够用，这时候加任务，两头都会崩。
-    <br>下午流程条（打印件 05）也在这一阶段：粗线以上三项——到家、加餐、<b>出去动一动</b>——本身就是睡眠协议的一部分，傍晚动过晚上才睡得着；粗线以下先空着。
-    <br>奖励券（打印件 10）从这一阶段就要打：<b>攒 5 张没用掉的通行券</b> 换 1 张「玩的时间」券，<b>攒满 7 张</b>（一整周没起来）换 1 张「自主权」券。</p>
+    <p class="unlock">必须做的事走这里：几点起、几点睡、作业在哪个时段。
+    <b>给必须做的事发奖励，等于暗示它本可以不做</b>，同时还稀释了星星的价值。
+    所以这一组只有时间，没有格子。</p>
 
-  <!-- ===== 1 · 晚上流程条 ===== -->
+  <section class="stage">
+    <div class="stage-head">
+      <h2>约束 · 时间表</h2>
+      <span class="tag now">不打卡</span>
+    </div>
+    <p class="unlock">必须做的事走这里：几点起、几点睡、作业在哪个时段。<b>给必须做的事发奖励，等于暗示它本可以不做</b>，同时还稀释了星星的价值。所以这一组只有时间，没有格子。</p>
+
+  <!-- ===== 01 · 一天的时间表 ===== -->
   <section class="block">
     <div class="block-head">
       <div class="grow">
-        <p class="eyebrow">打印件 01</p>
-        <h2>晚上流程条</h2>
+        <p class="eyebrow">打印件 01 · 约束</p>
+        <h2>一天的时间表</h2>
         <div class="meta">
-          <span>A4 <b>横版</b></span>
-          <span>贴 <b>床头墙上</b></span>
-          <span>每周换 <b>一张</b></span>
+          <span>A4 竖版</span>
+          <span>贴 <b>书桌前</b></span>
+          <span>印 <b>一次</b>，睡前两行跟着阶梯尺填</span>
         </div>
       </div>
-      <button class="btn" type="button" data-print="sheet-evening">打印这张</button>
+      <button class="btn" type="button" data-print="sheet-timetable">打印这张</button>
     </div>
-    <div class="frame" id="sheet-evening" data-orient="landscape">
+    <div class="frame" id="sheet-timetable" data-orient="portrait">
       <div class="scaler">
-        <div class="sheet land">
+        <div class="sheet port">
           <div class="s-pad">
             <div class="s-head">
               <div>
-                <div class="s-title" style="font-size:9mm">🌙 我的晚上</div>
-                <div class="s-sub">做完一件，贴一颗星 · 整套约 60 分钟 · 第 ____ 周</div>
+                <div class="s-title" style="font-size:9mm">🗓️ 我的一天</div>
+                <div class="s-sub">这些是安排好的，不用打卡 · 每天都一样，例外在下面</div>
               </div>
               <div class="s-name">名字 <span class="line"></span></div>
             </div>
-            <div class="grid ev-grid" style="grid-template-columns:62mm repeat(7,1fr);grid-template-rows:11mm repeat(5,25mm)"></div>
-            <div class="ev-foot">
-              <div class="slot">
-                <div class="lab">今晚<br>上床时间</div>
-                <div class="box">对照阶梯尺</div>
-              </div>
-              <div class="slot">
-                <div class="lab">昨晚我几分钟<br>就睡着了</div>
-                <div class="box">____ 分钟</div>
-              </div>
-              <div class="rule-note">
-                <b>换卡规则：</b>连续 <b>3 晚</b> 在 <b>20 分钟</b> 内睡着，就把上床时间卡换成早 15 分钟的那一张。<br>
-                没达标就留在原地，不往回退。
-              </div>
-            </div>
+            <div class="tt" data-timetable></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 2 · 早上流程条 ===== -->
+  <!-- ===== 02 · 上床阶梯尺 ===== -->
   <section class="block">
     <div class="block-head">
       <div class="grow">
-        <p class="eyebrow">打印件 02</p>
-        <h2>早上流程条</h2>
-        <div class="meta">
-          <span>A4 竖版 · <b>裁成两张 A5</b></span>
-          <span>贴 <b>衣柜门 / 房门内侧</b></span>
-          <span>一张管 <b>一周</b></span>
-        </div>
-      </div>
-      <button class="btn" type="button" data-print="sheet-morning">打印这张</button>
-    </div>
-    <div class="frame" id="sheet-morning" data-orient="portrait">
-      <div class="scaler">
-        <div class="sheet port">
-          <div class="a5" data-morning></div>
-          <div class="cutline"><span>沿虚线剪开</span></div>
-          <div class="a5" data-morning></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 3 · 免费通行券 ===== -->
-  <section class="block">
-    <div class="block-head">
-      <div class="grow">
-        <p class="eyebrow">打印件 03</p>
-        <h2>免费通行券</h2>
-        <div class="meta">
-          <span>A4 竖版 · <b>9 张</b></span>
-          <span>剪下放 <b>床头小盒</b></span>
-          <span>一晚 <b>一张</b></span>
-        </div>
-      </div>
-      <button class="btn" type="button" data-print="sheet-tickets">打印这张</button>
-    </div>
-    <div class="frame" id="sheet-tickets" data-orient="portrait">
-      <div class="scaler">
-        <div class="sheet port">
-          <div class="s-pad">
-            <div class="tix-grid" data-tickets></div>
-            <div class="sheet-foot">
-              <span>沿外框剪开 · 一晚发一张</span>
-              <span>整晚没用掉 → 贴一颗星，券自己收好攒着</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 4 · 上床时间卡 ===== -->
-  <section class="block">
-    <div class="block-head">
-      <div class="grow">
-        <p class="eyebrow">打印件 04</p>
+        <p class="eyebrow">打印件 02 · 约束</p>
         <h2>上床阶梯尺</h2>
         <div class="meta">
           <span>A4 竖版 · <b>整张不用剪</b></span>
-          <span>贴 <b>晚上流程条旁边</b></span>
+          <span>贴 <b>时间表旁边</b></span>
           <span>普通纸 · 印 <b>一次</b></span>
         </div>
       </div>
@@ -712,43 +695,48 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
     </div>
   </section>
 
-  <!-- ===== 5 · 下午流程条 ===== -->
+  </section>
+
+  </section>
+
+  <section class="stage">
+    <div class="stage-head">
+      <h2>激励 · 打卡</h2>
+      <span class="tag now">只有三项</span>
+    </div>
+    <p class="unlock">只装<b>家长希望、但孩子会抵触</b>的事——他自己愿意做的不用管，必须做的走上面的时间表。打卡表永远只挂 <b>3 项</b>：做到了就毕业上榜，从池子里换下一张上来，所以负担恒定，不会越滚越多。</p>
+
+  <!-- ===== 03 · 打卡表 ===== -->
   <section class="block">
     <div class="block-head">
       <div class="grow">
-        <p class="eyebrow">打印件 05</p>
-        <h2>下午流程条</h2>
+        <p class="eyebrow">打印件 03 · 激励</p>
+        <h2>打卡表</h2>
         <div class="meta">
           <span>A4 <b>横版</b></span>
-          <span>贴 <b>书桌前 / 客厅</b></span>
+          <span>贴 <b>书桌前，和毕业榜并排</b></span>
           <span>每周换 <b>一张</b></span>
         </div>
       </div>
-      <button class="btn" type="button" data-print="sheet-afternoon">打印这张</button>
+      <button class="btn" type="button" data-print="sheet-checkin">打印这张</button>
     </div>
-    <div class="frame" id="sheet-afternoon" data-orient="landscape">
+    <div class="frame" id="sheet-checkin" data-orient="landscape">
       <div class="scaler">
         <div class="sheet land">
           <div class="s-pad">
             <div class="s-head">
               <div>
-                <div class="s-title" style="font-size:9mm">🌆 我的下午</div>
-                <div class="s-sub">到家吃点东西 → 出去动 → 作业 · 粗线以下晚饭后做 · 第 ____ 周</div>
+                <div class="s-title" style="font-size:9mm">⭐ 这周我要搞定的</div>
+                <div class="s-sub">只有三项 · 做到了就毕业，换下一张上来 · 第 ____ 周</div>
               </div>
               <div class="s-name">名字 <span class="line"></span></div>
             </div>
-            <div class="grid af-grid"></div>
-            <div class="est af-est"></div>
-            <div class="grid af-grid2"></div>
-            <div class="ev-foot">
-              <div class="rule-note" style="border-left:.5mm solid var(--s-rule)">
-                <b>先玩再干活。</b>他刚上完 8 小时学，一进门就要求坐下写字，十次有九次会崩。
-                放书包、洗手、吃东西不用打卡——本来就会发生，这张表只标记需要推一把的事。
-              </div>
-              <div class="rule-note" style="border-left:.5mm solid var(--s-rule)">
-                <b>别急着定作业要多久。</b>动作慢多半是睡不够——分心和启动困难都是缺觉的典型表现。
-                第 1 阶段把觉补回来之后，这个数字大概率会自己往下走，所以只记录，不设限。
-              </div>
+            <div class="grid ck-grid"></div>
+            <div class="ck-sum"></div>
+            <div class="ck-qs">
+              <div class="ck-q"><b>① 这周哪一天最难？</b><span class="line"></span></div>
+              <div class="ck-q"><b>② 那天为什么难？</b><span class="line"></span></div>
+              <div class="ck-q"><b>③ 下周我想在哪天加把劲？</b><span class="line"></span></div>
             </div>
           </div>
         </div>
@@ -756,7 +744,244 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
     </div>
   </section>
 
-  <!-- ===== 推进节奏 ===== -->
+  <!-- ===== 04 · 免费通行券 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">打印件 04 · 激励</p>
+        <h2>免费通行券</h2>
+        <div class="meta">
+          <span>A4 竖版 · <b>9 张</b></span>
+          <span>剪下放 <b>床头小盒</b></span>
+          <span>一晚 <b>一张</b></span>
+        </div>
+      </div>
+      <button class="btn" type="button" data-print="sheet-tickets">打印这张</button>
+    </div>
+    <div class="frame" id="sheet-tickets" data-orient="portrait">
+      <div class="scaler">
+        <div class="sheet port">
+          <div class="s-pad">
+            <div class="tix-grid" data-tickets></div>
+            <div class="sheet-foot">
+              <span>沿外框剪开 · 一晚发一张</span>
+              <span>整晚没用掉 → 贴一颗星，券自己收好攒着</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 05 · 奖励券 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">打印件 05 · 激励</p>
+        <h2>奖励券</h2>
+        <div class="meta">
+          <span>A4 竖版 · <b>8 张</b></span>
+          <span>通行券攒够了 <b>换这个</b></span>
+          <span>由他 <b>自己挑</b></span>
+        </div>
+      </div>
+      <button class="btn" type="button" data-print="sheet-rewards">打印这张</button>
+    </div>
+    <div class="frame" id="sheet-rewards" data-orient="portrait">
+      <div class="scaler">
+        <div class="sheet port">
+          <div class="s-pad">
+            <div class="tc-grid" data-rewards></div>
+            <div class="sheet-foot">
+              <span>家长保管 · 周日结算时发 · 他自己挑一张</span>
+              <span>写上周数，当周有效，过期不累积</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </section>
+
+  <!-- ===== 06 · 激励池卡片 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">打印件 06 · 激励</p>
+        <h2>激励池卡片</h2>
+        <div class="meta">
+          <span>A4 竖版 · <b>16 张 ＋ 8 张空白</b></span>
+          <span>放 <b>一个盒子里</b></span>
+          <span>毕业时抽 3 挑 <b>一张</b></span>
+        </div>
+      </div>
+      <button class="btn" type="button" data-print="sheet-pool">打印这张</button>
+    </div>
+    <div class="frame" id="sheet-pool" data-orient="portrait">
+      <div class="scaler">
+        <div class="sheet port">
+          <div class="s-pad">
+            <div class="pool-grid" data-pool></div>
+            <div class="sheet-foot">
+              <span>剪开放盒子里 · 空白卡你自己填，池子随时可以加</span>
+              <span>毕业时你抽 3 张，他从这 3 张里挑 1 张夹到打卡表上</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 07 · 毕业榜 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">打印件 07 · 激励</p>
+        <h2>毕业榜</h2>
+        <div class="meta">
+          <span>A4 竖版</span>
+          <span>贴 <b>打卡表旁边</b></span>
+          <span>印 <b>一次</b>，越贴越长</span>
+        </div>
+      </div>
+      <button class="btn" type="button" data-print="sheet-grad">打印这张</button>
+    </div>
+    <div class="frame" id="sheet-grad" data-orient="portrait">
+      <div class="scaler">
+        <div class="sheet port">
+          <div class="s-pad">
+            <div class="s-head">
+              <div>
+                <div class="s-title" style="font-size:9mm">🏆 我已经搞定的</div>
+                <div class="s-sub">从打卡表上毕业的卡，贴到这里来 · 不是撤掉，是毕业</div>
+              </div>
+              <div class="s-name">名字 <span class="line"></span></div>
+            </div>
+            <div class="grad" data-grad></div>
+            <div class="sheet-foot">
+              <span>贴满了就再印一张，接着往下贴</span>
+              <span>这张榜只会变长，不会变短</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="stage">
+    <div class="stage-head">
+      <h2>备注 · 清单</h2>
+      <span class="tag">顺手就做了</span>
+    </div>
+    <p class="unlock">本来就会自动发生的事不单列打卡格，只留一张对照用的清单。</p>
+
+  <!-- ===== 08 · 装备清单卡 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">打印件 08 · 备注</p>
+        <h2>装备袋清单卡</h2>
+        <div class="meta">
+          <span>A4 竖版 · <b>4 张标签</b></span>
+          <span>贴 <b>每个袋子外面</b></span>
+          <span>空行 <b>你自己补</b></span>
+        </div>
+      </div>
+      <button class="btn" type="button" data-print="sheet-kittags">打印这张</button>
+    </div>
+    <div class="frame" id="sheet-kittags" data-orient="portrait">
+      <div class="scaler">
+        <div class="sheet port">
+          <div class="s-pad">
+            <div class="tag-grid" data-kittags></div>
+            <div class="sheet-foot">
+              <span>剪下来贴在对应的袋子上 · 他对着清单自己检查</span>
+              <span>「装明天的书包」那一格，就是照着这些勾</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </section>
+
+
+  <!-- ===== 说明 ===== -->
+  <!-- ===== 激励池怎么转 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">机制</p>
+        <h2>激励池怎么转</h2>
+      </div>
+    </div>
+    <p class="lede">打卡的作用域只有一格：<b style="color:var(--ink);font-weight:500">家长希望 ∩ 孩子抵触</b>。
+    他自己愿意做的不用管，必须做的走时间表。剩下那一格，做成一个卡片池。</p>
+    <div class="flow">
+      <span>池子里抽 3 张</span><i>→</i>
+      <span>他从 3 张里挑 1 张</span><i>→</i>
+      <span>夹上打卡表</span><i>→</i>
+      <span>做到不用提醒</span><i>→</i>
+      <span>毕业，贴上毕业榜</span><i>→</i>
+      <span>再抽 3 张</span>
+    </div>
+    <div class="econ">
+      <div class="lane">
+        <p class="eyebrow">为什么永远只有三项</p>
+        <p class="rule">毕业一个<br>才进一个</p>
+        <p>负担恒定，不会越滚越多。一个行为大约 3–4 周变成自动动作，这期间只盯三件事，
+        他记得住；十件事一起上，一件也立不住。</p>
+      </div>
+      <div class="lane">
+        <p class="eyebrow">为什么是抽 3 挑 1</p>
+        <p class="rule">随机的是选项<br>选择权在他</p>
+        <p>全自由选，练字这类硬骨头永远轮不到；全指定，自主感就没了——而那正是整套系统要培养的东西。
+        你抽 3 张，他挑 1 张，两头都保住。</p>
+      </div>
+      <div class="lane">
+        <p class="eyebrow">为什么要有毕业榜</p>
+        <p class="rule">不是撤掉<br>是毕业</p>
+        <p>从孩子视角，「换一项」是失去：我好不容易做到了，格子没了。
+        卡片撤下来贴到毕业榜上，同一个动作叙事就反过来——他看着榜变长，而不是看着表变空。</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:30px">什么时候算毕业</h3>
+    <p class="lede">不设硬指标，你判断。参考线：<b style="color:var(--ink);font-weight:500">连续两周基本不用提醒</b>。
+    打卡表上每项仍有一周 7 格，孩子看得见「这周做到几天」——短期反馈归他，长期判断归你。</p>
+
+    <h3 style="margin-top:26px">攒的星星换什么</h3>
+    <div class="econ" style="margin-top:6px">
+      <div class="lane">
+        <p class="eyebrow">通道一 · 自制力</p>
+        <p class="rule">攒 5 张没用掉的通行券<br>→ 1 张「玩的时间」券<br><span style="font-size:.88rem;color:var(--muted)">攒满 7 张 → 1 张「自主权」券</span></p>
+        <p>通行券是唯一一个<b style="color:var(--ink);font-weight:500">忍住不用才攒得下来</b>的东西，
+        天然是延迟满足的训练，而且实体可见，比抽象的星星对这个年龄有效得多。</p>
+      </div>
+      <div class="lane">
+        <p class="eyebrow">通道二 · 完成度</p>
+        <p class="rule">一周三项都做到 5 天<br>→ 1 张「玩的时间」券</p>
+        <p>七天里允许崩 2 天。全或无的规则，孩子断一次就放弃了。
+        数字压在 10 以内，他周三就能自己算出还差几天——这个算的动作本身就是规划训练。</p>
+      </div>
+    </div>
+    <div class="callout" style="border-left-color:var(--warn);margin-top:22px">
+      <h3 style="color:var(--warn)">一条必须守住的豁免：上厕所不用券</h3>
+      <p class="lede">通行券能换奖励，就有了让他憋着的动力。<b style="color:var(--ink);font-weight:500">6–8 岁憋尿是真会出问题的。</b>
+      券面上直接印了「上厕所不用券，随时去」——券只管喝水、要抱抱、想说句话这些可以等的事。
+      这条要在第一天就当着他的面说清楚。</p>
+    </div>
+    <div class="callout" style="border-left-color:var(--accent);margin-top:18px">
+      <h3 style="color:var(--accent)">结算由他自己做 —— 那你就不能是审计员</h3>
+      <p class="lede">他数错了、或者多算了一天，<b style="color:var(--ink);font-weight:500">不要当场纠正</b>。
+      多发一张「多玩 30 分钟」的代价几乎是零，而「被当场戳穿」的代价很大，一次就够让他再也不想碰这张表。
+      别问「你这天明明没做，怎么算完成了？」，要问「这周你自己算下来几天？」，然后听他说完，不接话。</p>
+    </div>
+  </section>
+
+  <!-- ===== 八步推进 ===== -->
   <section class="block">
     <div class="block-head">
       <div class="grow">
@@ -791,268 +1016,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
       </div>
     </div>
   </section>
-  </section><!-- /stage 1 -->
-
-  <!-- ============ 第 2 阶段 ============ -->
-  <section class="stage">
-    <div class="stage-head">
-      <h2>第 2 阶段 · 备料</h2>
-      <span class="tag">睡眠稳定后</span>
-    </div>
-    <p class="unlock">
-      解锁条件：上床时间走到 <b>第 5 步（22:00）</b> 之后，再稳定 <b>两周</b>。
-      这一阶段专治「什么都要家长准备」——把备料本身变成孩子的任务，而且提前一天做完。
-      <br>奖励券这里多一条通道：<b>装备检查连续 5 天</b> 换 1 张「玩的时间」券。
-    </p>
-
-  <!-- ===== 5 · 明日装备检查 ===== -->
-  <section class="block">
-    <div class="block-head">
-      <div class="grow">
-        <p class="eyebrow">打印件 06</p>
-        <h2>明日装备检查</h2>
-        <div class="meta">
-          <span>A4 竖版 · <b>裁成两张 A5</b></span>
-          <span>贴 <b>书桌 / 书包旁</b></span>
-          <span>睡前流程 <b>之前</b>做</span>
-        </div>
-      </div>
-      <button class="btn" type="button" data-print="sheet-kit">打印这张</button>
-    </div>
-    <div class="frame" id="sheet-kit" data-orient="portrait">
-      <div class="scaler">
-        <div class="sheet port">
-          <div class="a5" data-kit></div>
-          <div class="cutline"><span>沿虚线剪开</span></div>
-          <div class="a5" data-kit></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 6 · 装备袋清单卡 ===== -->
-  <section class="block">
-    <div class="block-head">
-      <div class="grow">
-        <p class="eyebrow">打印件 07</p>
-        <h2>装备袋清单卡</h2>
-        <div class="meta">
-          <span>A4 竖版 · <b>4 张标签</b></span>
-          <span>贴 <b>每个袋子外面</b></span>
-          <span>空行 <b>你自己补</b></span>
-        </div>
-      </div>
-      <button class="btn" type="button" data-print="sheet-kittags">打印这张</button>
-    </div>
-    <div class="frame" id="sheet-kittags" data-orient="portrait">
-      <div class="scaler">
-        <div class="sheet port">
-          <div class="s-pad">
-            <div class="tag-grid" data-kittags></div>
-            <div class="sheet-foot">
-              <span>剪下来贴在对应的袋子上 · 他对着清单自己检查</span>
-              <span>「装明天的书包」那一格，就是照着这些勾</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  </section><!-- /stage 2 -->
-
-  <!-- ============ 第 3 阶段 ============ -->
-  <section class="stage">
-    <div class="stage-head">
-      <h2>第 3 阶段 · 练习</h2>
-      <span class="tag">备料跑通后</span>
-    </div>
-    <p class="unlock">
-      解锁条件：装备检查连续 <b>两周</b> 不用提醒。
-      这一阶段才第一次出现练字和编程——而且量小到他没法拒绝。架子鼓家里没器材，不进每日表，只在卡池里留了不需要鼓的节奏练习。
-    </p>
-
-  <!-- ===== 星星怎么变成奖励 ===== -->
-  <section class="block">
-    <div class="block-head">
-      <div class="grow">
-        <p class="eyebrow">规则</p>
-        <h2>星星怎么变成奖励</h2>
-      </div>
-    </div>
-    <p class="lede">两条通道各走各的，可以都拿到，也可以只拿一条。关键是<b style="color:var(--ink);font-weight:500">奖励的性质要配得上它奖励的行为</b>——用自主权奖励主动，用玩的时间奖励完成。</p>
-    <div class="econ">
-      <div class="lane">
-        <p class="eyebrow">通道一 · 自制力 <b style="color:var(--muted);font-weight:400">第 1 阶段</b></p>
-        <p class="rule">攒 5 张没用掉的通行券<br>→ 1 张「玩的时间」券<br><span style="font-size:.88rem;color:var(--muted)">攒满 7 张 → 1 张「自主权」券</span></p>
-        <p>通行券是唯一一个<b style="color:var(--ink);font-weight:500">忍住不用才攒得下来</b>的东西，所以它天然是延迟满足的训练。它还是实体的——攒着看得见摸得着，比抽象的星星对这个年龄有效得多。</p>
-      </div>
-      <div class="lane">
-        <p class="eyebrow">通道二 · 完成度 <b style="color:var(--muted);font-weight:400">第 2–3 阶段</b></p>
-        <p class="rule">一天 ≥ 3 颗星 = 完成<br>一周完成 5 天 → 1 张「玩的时间」券</p>
-        <p>一天有 5 格，拿到 3 格就算数，其中「玩」那格几乎白送——门槛是故意压低的。七天里允许崩 2 天：全或无的规则，孩子断一次就放弃了。第 2 阶段是装备检查连续 5 天。</p>
-      </div>
-      <div class="lane">
-        <p class="eyebrow">通道三 · 主动性 <b style="color:var(--muted);font-weight:400">第 3 阶段</b></p>
-        <p class="rule">一周 4 颗主动星<br>→ 1 张「自主权」券</p>
-        <p>主动星＝没人提醒、自己开始。这是整套系统真正要培养的东西，所以它有独立的、更高级的回报通道，而不是和普通完成混在一起算。</p>
-      </div>
-    </div>
-    <p class="lede" style="margin-top:16px">
-      三个数字——<b style="color:var(--ink);font-weight:500">5 张、5 天、4 颗</b>——都在 10 以内，是故意的。
-      他周三就能自己算出「还差几个」，而这个算的动作本身就是规划训练，比拿到券更重要。
-    </p>
-    <div class="callout" style="border-left-color:var(--warn);margin-top:22px">
-      <h3 style="color:var(--warn)">一条必须守住的豁免：上厕所不用券</h3>
-      <p class="lede">通行券一旦能换奖励，就有了让他憋着的动力。<b style="color:var(--ink);font-weight:500">6–8 岁憋尿是真会出问题的。</b>所以券面上直接印了「上厕所不用券，随时去」——券只管喝水、要抱抱、想说句话这些可以等的事。这条要在第一天就当着他的面说清楚。</p>
-    </div>
-    <div class="flow">
-      <span>摸 3 张任务卡</span><i>→</i>
-      <span>自己挑 1 张做</span><i>→</i>
-      <span>当晚放回盒子</span><i>→</i>
-      <span>周日结算</span><i>→</i>
-      <span>他自己挑一张券</span><i>→</i>
-      <span>当周有效，过期不累积</span>
-    </div>
-
-    <div class="callout" style="border-left-color:var(--accent);margin-top:26px">
-      <h3 style="color:var(--accent)">结算由他自己做 —— 那你就不能是审计员</h3>
-      <p class="lede">这是这套系统里最容易做坏的一步。他数错了、或者多算了一天，<b style="color:var(--ink);font-weight:500">不要当场纠正</b>。多发一张「多玩 30 分钟」的代价几乎是零，而「被当场戳穿」的代价很大——一次就够让他再也不想碰这张表。</p>
-      <ul class="settings">
-        <li><b>别说</b><span>「你这天明明没练字，怎么算完成了？」——一句话就把自主变回了监工。</span></li>
-        <li><b>要说</b><span>「这周你自己算下来几天？」然后听他说完，不接话。</span></li>
-        <li><b>真正有用的</b><span>「哪一天最难？」——结算卡上的三个问题就是干这个的，第三问「下周想在哪天加把劲」才是时间规划真正开始的地方。</span></li>
-      </ul>
-      <p class="lede" style="font-size:.86rem">设计上已经把争议压到最小：他只需要数两行——「今天完成」的方框和「主动星」的贴纸，都是涂了就算、没涂就不算，没有解释空间。</p>
-    </div>
-  </section>
-
-  <!-- ===== 7 · 每日三卡表 ===== -->
-  <section class="block">
-    <div class="block-head">
-      <div class="grow">
-        <p class="eyebrow">打印件 08</p>
-        <h2>每日三卡表</h2>
-        <div class="meta">
-          <span>A4 <b>横版</b></span>
-          <span>贴 <b>书桌前</b></span>
-          <span>每周换 <b>一张</b></span>
-        </div>
-      </div>
-      <button class="btn" type="button" data-print="sheet-daily">打印这张</button>
-    </div>
-    <div class="frame" id="sheet-daily" data-orient="landscape">
-      <div class="scaler">
-        <div class="sheet land">
-          <div class="s-pad">
-            <div class="s-head">
-              <div>
-                <div class="s-title" style="font-size:8.4mm">⭐ 我的一天</div>
-                <div class="s-sub">每天三张卡 · 玩也要打卡 · 周日他自己结算 · 第 ____ 周</div>
-              </div>
-              <div class="s-name">名字 <span class="line"></span></div>
-            </div>
-            <div class="grid daily-grid"></div>
-            <div class="est"></div>
-            <div class="settle">
-              <div><b>本周完成</b> <span class="blank"></span> 天
-                <em>满 5 天 → 换 1 张「玩的时间」券 · 允许崩 2 天</em></div>
-              <div><b>本周主动星</b> <span class="blank"></span> 颗
-                <em>满 4 颗 → 换 1 张「自主权」券</em></div>
-              <div style="border:0;padding-left:0">
-                <b style="font-size:3.1mm">最小量</b>
-                <em>练字＝写 3 个字 · 编程＝打开看一眼上次做的<br>打卡打的是「做了」，不是「做了多久」</em></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 8 · 任务卡池 ===== -->
-  <section class="block">
-    <div class="block-head">
-      <div class="grow">
-        <p class="eyebrow">打印件 09</p>
-        <h2>任务卡池</h2>
-        <div class="meta">
-          <span>A4 竖版 · <b>18 张</b></span>
-          <span>放 <b>书桌上的小盒</b></span>
-          <span>摸 3 张挑 <b>一张</b></span>
-        </div>
-      </div>
-      <button class="btn" type="button" data-print="sheet-pool">打印这张</button>
-    </div>
-    <div class="frame" id="sheet-pool" data-orient="portrait">
-      <div class="scaler">
-        <div class="sheet port">
-          <div class="s-pad">
-            <div class="pool-grid" data-pool></div>
-            <div class="sheet-foot">
-              <span>摸 3 张 → 从这 3 张里自己挑 1 张做 → 另外 2 张放回去</span>
-              <span>做完的当晚也放回盒子 · 这一格别替他挑</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 9 · 奖励券 ===== -->
-  <section class="block">
-    <div class="block-head">
-      <div class="grow">
-        <p class="eyebrow">打印件 10</p>
-        <h2>奖励券</h2>
-        <div class="meta">
-          <span>A4 竖版 · <b>8 张</b></span>
-          <span>第 1 阶段就 <b>开始用</b></span>
-          <span>由他 <b>自己挑</b></span>
-        </div>
-      </div>
-      <button class="btn" type="button" data-print="sheet-rewards">打印这张</button>
-    </div>
-    <div class="frame" id="sheet-rewards" data-orient="portrait">
-      <div class="scaler">
-        <div class="sheet port">
-          <div class="s-pad">
-            <div class="tc-grid" data-rewards></div>
-            <div class="sheet-foot">
-              <span>家长保管 · 周日结算时发 · 他自己挑一张</span>
-              <span>写上周数，当周有效，过期不累积</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ===== 10 · 周结算卡 ===== -->
-  <section class="block">
-    <div class="block-head">
-      <div class="grow">
-        <p class="eyebrow">打印件 11</p>
-        <h2>周结算卡</h2>
-        <div class="meta">
-          <span>A4 竖版 · <b>裁成两张 A5</b></span>
-          <span>贴 <b>每日三卡表旁边</b></span>
-          <span>周日晚饭后 · <b>他自己数</b></span>
-        </div>
-      </div>
-      <button class="btn" type="button" data-print="sheet-settle">打印这张</button>
-    </div>
-    <div class="frame" id="sheet-settle" data-orient="portrait">
-      <div class="scaler">
-        <div class="sheet port">
-          <div class="a5" data-settle></div>
-          <div class="cutline"><span>沿虚线剪开</span></div>
-          <div class="a5" data-settle></div>
-        </div>
-      </div>
-    </div>
-  </section>
-  </section><!-- /stage 3 -->
-
-  <!-- ===== 耗材 ===== -->
+    <!-- ===== 耗材 ===== -->
   <section class="block">
     <div class="block-head">
       <div class="grow">
@@ -1074,24 +1038,23 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
       <table class="protocol">
         <thead><tr><th>频率</th><th>打印件</th><th>说明</th></tr></thead>
         <tbody>
-          <tr><td>只印一次</td><td>04 阶梯尺 · 07 装备袋标签 · 09 任务卡池</td><td class="n">3 张</td></tr>
-          <tr><td>每周</td><td>01 晚上流程条 · 08 每日三卡表</td><td class="n">2 张</td></tr>
-          <tr><td>看情况</td><td>03 通行券</td><td class="n">兑掉的会还给你再发，只有真用掉的才消耗——头几周约 1 张 / 周，后面越来越少</td></tr>
-          <tr><td>每 2 周</td><td>02 早上流程条 · 06 装备检查 · 11 周结算卡</td><td class="n">1.5 张 / 周</td></tr>
-          <tr><td>每 4 周</td><td>10 奖励券</td><td class="n">0.25 张 / 周</td></tr>
+          <tr><td>只印一次</td><td>01 时间表 · 02 阶梯尺 · 06 激励池卡片 · 07 毕业榜 · 08 装备清单卡</td><td class="n">5 张</td></tr>
+          <tr><td>每周</td><td>03 打卡表</td><td class="n">1 张</td></tr>
+          <tr><td>看情况</td><td>04 通行券</td><td class="n">兑掉的会还给你再发，只有真用掉的才消耗——头几周约 1 张 / 周，后面越来越少</td></tr>
+          <tr><td>每 4 周</td><td>05 奖励券</td><td class="n">0.25 张 / 周</td></tr>
         </tbody>
       </table>
     </div>
     <p class="lede" style="margin-top:14px">
-      <b style="color:var(--ink);font-weight:500">第 1 阶段现在要打 6 张</b>：01–05，加一张 10 奖励券（通行券攒够了要换的就是它）。
-      想一次备齐 8 周就是 29 张（01 ×8、05 ×8、02 ×4、03 ×7、04 ×1、10 ×1）。
-      三个阶段全跑起来后约 <b style="color:var(--ink);font-weight:500">5 张 / 周</b>，一年 260 张左右——半包 A4 出头。
+      <b style="color:var(--ink);font-weight:500">开局一次打 8 张</b>，其中五张是一次性的，之后每周只补一张打卡表。
+      想备齐 8 周，再多印 7 张打卡表和几张通行券，<b style="color:var(--ink);font-weight:500">合计 20 张出头</b>。
+      长期约 <b style="color:var(--ink);font-weight:500">1.3 张 / 周</b>，一年 70 张左右——比原来省了三分之二。
     </p>
   </section>
 
   <footer>
-    第 1 阶段跑满 4 周，如果入睡仍然要 45 分钟以上，建议看一次儿科——排查打鼾／腺样体、不安腿、或焦虑。<br>
-    第 2、3 阶段的打印件放在这里是让你看到全貌，不是让你现在打——只有 10 奖励券例外，第 1 阶段就要用。一次上一个阶段，前一个稳住了再往下走。
+    睡眠协议跑满 4 周，如果入睡仍然要 45 分钟以上，建议看一次儿科——排查打鼾／腺样体、不安腿、或焦虑。<br>
+    打卡表开局的三项由睡眠协议指定：拉开窗帘 · 出去动一动 · 通行券没用掉。它们不是特例，就是激励池里被指定的前三张——机制只有一套。
   </footer>
 
 </div>
@@ -1130,64 +1093,74 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
     }
   }
 
-  /* ---- 1. evening grid ---- */
-  var ev = document.querySelector(".ev-grid");
-  dayHeaders(ev);
-  taskRow(ev, "🛁", "洗澡", "15 分钟");
-  taskRow(ev, "🦷", "换睡衣 · 刷牙", "10 分钟");
-  taskRow(ev, "📖", "读书", "15 分钟 · 关灯前最后一件");
-  taskRow(ev, "🛏️", "关灯躺下", "10 分钟 · 到点就关");
-  taskRow(ev, "🎫", "通行券没用掉", "攒 5 张换奖励券");
-
-  /* ---- 5. 下午流程条：16:40 到家 → 18:30 晚饭，把这 110 分钟排出结构 ---- */
-  // 只列有阻力的两件事：换衣服出门、坐下写作业。5 分钟的琐事不占格子。
-  var af = document.querySelector(".af-grid");
-  af.style.gridTemplateColumns = "62mm repeat(7,1fr)";
-  af.style.gridTemplateRows = "9mm 32mm 32mm";
-  dayHeaders(af);
-  taskRow(af, "🏃", "出去动一动", "40 分钟 · 对晚上睡着最有帮助");
-  taskRow(af, "📚", "作业", "先猜要多久，再计时");
-
-  // 作业是最需要时间感的一件事，估时直接跟在它下面
-  var afe = document.querySelector(".af-est");
-  afe.style.gridTemplateColumns = "62mm repeat(7,1fr)";
-  afe.style.gridTemplateRows = "10mm 10mm";
-  afe.appendChild(el("div","lb","⏱️ 我猜要几分钟"));
-  for (var a1 = 0; a1 < 7; a1++) afe.appendChild(el("div",null,"＿＿"));
-  afe.appendChild(el("div","lb","✔️ 实际用了几分钟"));
-  for (var a2 = 0; a2 < 7; a2++) afe.appendChild(el("div",null,"＿＿"));
-
-  var af2 = document.querySelector(".af-grid2");
-  af2.style.gridTemplateColumns = "62mm repeat(7,1fr)";
-  af2.style.gridTemplateRows = "26mm 26mm";
-  taskRow(af2, "✍️", "今天练什么", "晚饭后<span class=\'stage-tag\'>第 3 阶段</span>");
-  taskRow(af2, "📦", "明日装备", "晚饭后<span class=\'stage-tag\'>第 2 阶段</span>");
-
-  /* ---- 2. morning A5 ×2 ---- */
-  document.querySelectorAll("[data-morning]").forEach(function(box){
-    var head = el("div","s-head");
-    head.innerHTML =
-      '<div><div class="s-title" style="font-size:7.4mm">☀️ 我的早上</div>' +
-      '<div class="s-sub">起床后 30 分钟内见到光 · 第 ____ 周</div></div>' +
-      '<div class="s-name">名字 <span class="line"></span></div>';
-    box.appendChild(head);
-
-    var g = el("div","grid");
-    g.style.gridTemplateColumns = "48mm repeat(7,1fr)";
-    g.style.gridTemplateRows = "9mm 30mm 30mm 22mm";
-    dayHeaders(g);
-    taskRow(g, "🪟", "拉开窗帘", "");
-    taskRow(g, "👕", "自己穿好衣服", "");
-    taskRow(g, "⏰", "今天几点起的", "写下来", "write");
-    box.appendChild(g);
-
-    var foot = el("div","rule-note");
-    foot.style.cssText = "margin-top:4mm;border-left:.5mm solid var(--s-rule);padding-left:4mm;font-size:3.1mm";
-    foot.innerHTML = '<b>起床时间不许动：</b>上学日 07:30，周末最多 08:00。这一条比几点上床重要得多。';
-    box.appendChild(foot);
+  /* ---- 1. 一天的时间表：约束项，不打卡。每天同一条轴 + 少数例外 ---- */
+  var TT = [
+    {ic:"☀️", hd:"早上", rows:[
+      {t:"07:30", w:"起床 · 拉开窗帘"},
+      {t:"08:00", w:"上学"}
+    ], note:"起床时间全程不变，周末最多睡到 08:00"},
+    {ic:"🏫", hd:"放学后", rows:[
+      {t:"16:10", w:"放学", d:"16:40 到家"},
+      {t:"", w:"出去动一动", d:"40 分钟"},
+      {t:"", w:"作业", d:"晚饭前做完"}
+    ], note:"先玩再干活——刚上完 8 小时学，一进门就坐下写字十次有九次会崩"},
+    {ic:"🍚", hd:"晚饭", rows:[
+      {t:"18:30", w:"晚饭"},
+      {t:"19:10", w:"自由时间", d:"到睡前流程为止"}
+    ]},
+    {ic:"🌙", hd:"睡前", rows:[
+      {t:"blank", w:"洗澡 15′ → 换睡衣刷牙 10′ → 读书 15′ → 关灯 10′", d:"共 60 分钟"},
+      {t:"blank", w:"上床", d:"对照阶梯尺"}
+    ], note:"这两行跟着阶梯尺填，推进一步改一次"}
+  ];
+  var EX = [
+    {day:"周三 · 周四", tm:"20:00", ev:"Polly 英语", sub:"20:30 结束"},
+    {day:"周五", tm:"17:00", ev:"架子鼓课", sub:"18:30 到家，晚饭提前"},
+    {day:"周六", tm:"10:30", ev:"练字班", sub:"12:00 结束"},
+    {day:"周日", tm:"14:00", ev:"编程课", sub:"16:00 结束"}
+  ];
+  var tt = document.querySelector("[data-timetable]");
+  TT.forEach(function(sec){
+    var d = el("div","tt-sec");
+    var rows = sec.rows.map(function(r){
+      var time = r.t === "blank" ? '<span class="t blank"></span>'
+                                 : '<span class="t">' + (r.t || "") + '</span>';
+      return '<div class="tt-row">' + time +
+             '<span class="w">' + r.w + '</span>' +
+             (r.d ? '<span class="d">' + r.d + '</span>' : '') + '</div>';
+    }).join("");
+    d.innerHTML =
+      '<div class="tt-hd"><span class="ic">' + sec.ic + '</span><span>' + sec.hd + '</span></div>' +
+      '<div class="tt-body">' + rows +
+      (sec.note ? '<div class="tt-note">' + sec.note + '</div>' : '') + '</div>';
+    tt.appendChild(d);
   });
+  var ex = el("div","tt-ex");
+  ex.innerHTML = '<div class="cap">这周的例外</div>' + EX.map(function(e){
+    return '<div class="tt-ex-row"><span class="day">' + e.day + '</span>' +
+           '<span class="tm">' + e.tm + '</span>' +
+           '<span class="ev">' + e.ev + ' <small>· ' + e.sub + '</small></span></div>';
+  }).join("");
+  tt.appendChild(ex);
 
-  /* ---- 3. tickets ×9 ---- */
+  /* ---- 2. 打卡表：永远 3 项，标签栏空着夹激励池的卡 ---- */
+  var ck = document.querySelector(".ck-grid");
+  ck.style.gridTemplateColumns = "62mm repeat(7,1fr)";
+  ck.style.gridTemplateRows = "10mm repeat(3,34mm)";
+  dayHeaders(ck);
+  for (var c = 1; c <= 3; c++){
+    var slot = el("div","cell ck-slot");
+    slot.innerHTML = '<span class="box">夹一张卡</span><span class="hint">第 ' + c + ' 项</span>';
+    ck.appendChild(slot);
+    for (var d2 = 0; d2 < 7; d2++) ck.appendChild(starCell());
+  }
+  var sum = document.querySelector(".ck-sum");
+  sum.style.gridTemplateColumns = "62mm repeat(7,1fr)";
+  sum.style.gridTemplateRows = "11mm";
+  sum.appendChild(el("div","lb","这周一共做到几天"));
+  for (var s1 = 0; s1 < 7; s1++) sum.appendChild(el("div",null,"＿＿"));
+
+  /* ---- 04. 通行券 ×9 ---- */
   var tx = document.querySelector("[data-tickets]");
   for (var i = 1; i <= 9; i++){
     var t = el("div","tix");
@@ -1203,7 +1176,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
     tx.appendChild(t);
   }
 
-  /* ---- 4. bedtime cards ×8 ---- */
+  /* ---- 02. 上床阶梯尺 ---- */
   var TIMES = ["23:00","22:45","22:30","22:15","22:00","21:45","21:30","21:15"];
   // 一整张阶梯：他能看见自己走了多远、还剩几级——8 张散卡看不到全局
   var tc = document.querySelector("[data-times]");
@@ -1241,34 +1214,9 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
     return (total / 60).toFixed(1).replace(/\.0$/,"");
   }
 
-  /* ================= 第 2 阶段 ================= */
+  /* ================= 备注类 ================= */
 
-  /* ---- 5. 明日装备检查 ×2 ---- */
-  document.querySelectorAll("[data-kit]").forEach(function(box){
-    var head = el("div","s-head");
-    head.innerHTML =
-      '<div><div class="s-title" style="font-size:7.4mm">📦 明天的装备</div>' +
-      '<div class="s-sub">睡前流程之前做完 · 第 ____ 周</div></div>' +
-      '<div class="s-name">名字 <span class="line"></span></div>';
-    box.appendChild(head);
-
-    var g = el("div","grid");
-    g.style.gridTemplateColumns = "48mm repeat(7,1fr)";
-    g.style.gridTemplateRows = "9mm 30mm 30mm 30mm";
-    dayHeaders(g);
-    taskRow(g, "🎒", "装明天的书包", "对着课程表");
-    taskRow(g, "✏️", "要用的摆桌上", "作业纸 · 水杯");
-    taskRow(g, "🗂️", "今天的东西归位", "");
-    box.appendChild(g);
-
-    var foot = el("div","rule-note");
-    foot.style.cssText = "margin-top:3.5mm;border-left:.5mm solid var(--s-rule);padding-left:4mm;font-size:3.1mm";
-    foot.innerHTML = '<b>装备袋：</b>练字袋 · 编程包 · 架子鼓包 · 书包，各贴一张清单卡（打印件 07），对着勾。';
-    box.appendChild(foot);
-  });
-
-
-  /* ---- 6. 装备袋清单卡 ×4：备料的大头是实体材料，清单化才治本 ---- */
+  /* ---- 08. 装备清单卡 ×4：备料的大头是实体材料，清单化才治本 ---- */
   var KITS = [
     {ic:"✍️", nm:"练字袋", sub:"周二 · 三 · 四 · 六 用",
      items:["米字格纸","笔","字帖","上次写的那张"], blanks:4,
@@ -1301,76 +1249,53 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
     ktg.appendChild(c);
   });
 
-  /* ================= 第 3 阶段 ================= */
+  /* ================= 激励类 ================= */
 
-  /* ---- 7. 每日三卡表 ---- */
-  // 轮换跟着课程走：课后一两天内练，记忆最新、阻力最小
-  var ROT = [
-    {ic:"💻", nm:"编程"},   // 周日下午刚上完编程课，iPad 上就能做
-    {ic:"✍️", nm:"练字"},
-    {ic:"✍️", nm:"练字"},   // Polly 日，量小
-    {ic:"✍️", nm:"练字"},   // Polly 日，量小
-    {ic:"",   nm:"休息", rest:true}, // 周五鼓课日，18:30 才到家
-    {ic:"✍️", nm:"练字"},   // 周六上午刚上完练字班
-    {ic:"💻", nm:"编程"}    // 周日下午上课，晚上复现
-  ];
-  // 家里没鼓，架子鼓不进每日表；节奏练习留在卡池里（不需要器材）
-
-  var dg = document.querySelector(".daily-grid");
-  dg.style.gridTemplateColumns = "62mm repeat(7,1fr)";
-  dg.style.gridTemplateRows = "9mm 21mm 24mm 24mm 21mm 21mm 14mm";
-  dayHeaders(dg);
-  taskRow(dg, "📚", "作业", "每天都有");
-
-  dg.appendChild(el("div","task",
-    '<span class="ic">🔄</span><span>今天练什么<small>跟着课走，趁热练</small></span>'));
-  ROT.forEach(function(r){
-    var c = el("div","cell rot" + (r.rest ? " rest" : ""));
-    c.innerHTML = r.rest
-      ? "休息"
-      : '<span class="ic">' + r.ic + '</span><span class="nm">' + r.nm + '</span>' +
-        '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#star"/></svg>';
-    dg.appendChild(c);
-  });
-
-  dg.appendChild(el("div","task",
-    '<span class="ic">⭐</span><span>我自己选的<small>摸 3 张，挑 1 张</small></span>'));
-  for (var p = 0; p < 7; p++) dg.appendChild(el("div","writein","贴卡片"));
-
-  taskRow(dg, "🎮", "玩", "这一格也要打卡");
-  taskRow(dg, "🚀", "主动星", "没人提醒，自己开始");
-
-  /* 日结算：当天拿到 3 颗星以上就涂满，周末数格子 */
-  dg.appendChild(el("div","task",
-    '<span class="ic">✅</span><span>今天完成<small>拿到 3 颗星以上</small></span>'));
-  for (var dn = 0; dn < 7; dn++) dg.appendChild(el("div","cell donecell","<span></span>"));
-
-  /* 估时游戏：猜 vs 实际，这是时间感真正长出来的地方 */
-  var est = document.querySelector(".est");
-  est.style.gridTemplateColumns = "62mm repeat(7,1fr)";
-  est.style.gridTemplateRows = "10mm 10mm";
-  est.appendChild(el("div","lb",'⏱️ 我猜要几分钟'));
-  for (var e1 = 0; e1 < 7; e1++) est.appendChild(el("div",null,"＿＿"));
-  est.appendChild(el("div","lb",'✔️ 实际用了几分钟'));
-  for (var e2 = 0; e2 < 7; e2++) est.appendChild(el("div",null,"＿＿"));
-
-  /* ---- 8. 任务卡池 ×18 ---- */
+  /* ---- 06. 激励池卡片 ×24 ---- */
+  // 池子 = 家长希望 ∩ 孩子抵触。孩子愿意做的不进池，必须做的走时间表。
   var POOL = [
-    {ic:"✍️", nm:"多写 5 个字"},   {ic:"🥁", nm:"用手打一段节奏"},  {ic:"📖", nm:"读一本绘本"},
-    {ic:"🎨", nm:"画一张画"},      {ic:"🏃", nm:"出去跑一圈"},   {ic:"🧩", nm:"拼一次拼图"},
-    {ic:"💻", nm:"编程多做一题"},  {ic:"🗣️", nm:"英语跟读 3 句"}, {ic:"🎵", nm:"跟着歌打节拍"},
-    {ic:"📕", nm:"翻一遍明天的课本"},  {ic:"🧹", nm:"收拾一次书桌"}, {ic:"🪴", nm:"给植物浇水"},
-    {ic:"🍳", nm:"帮忙做一道菜"},  {ic:"🧱", nm:"搭一次积木"},   {ic:"✂️", nm:"做一个手工"},
-    {ic:"🐾", nm:"陪家人散步"},    {ic:"📝", nm:"写一句今天的事"}, {ic:"💤", nm:"提前 10 分钟躺下"}
+    {ic:"☀️", nm:"拉开窗帘",        tag:"睡眠"},
+    {ic:"🏃", nm:"出去动一动",      tag:"睡眠"},
+    {ic:"🎫", nm:"通行券没用掉",    tag:"睡眠"},
+    {ic:"📦", nm:"装明天的书包",    tag:"备料"},
+    {ic:"✏️", nm:"明天要用的摆桌上", tag:"备料"},
+    {ic:"🗂️", nm:"今天的东西归位",  tag:"备料"},
+    {ic:"✍️", nm:"练字，写 3 个字",  tag:"练习"},
+    {ic:"💻", nm:"打开看一眼编程",  tag:"练习"},
+    {ic:"🗣️", nm:"英语跟读 3 句",   tag:"练习"},
+    {ic:"🥁", nm:"用手打一段节奏",  tag:"练习"},
+    {ic:"👕", nm:"自己穿好衣服",    tag:"生活"},
+    {ic:"🦷", nm:"不用催就去刷牙",  tag:"生活"},
+    {ic:"🧹", nm:"收拾一次书桌",    tag:"生活"},
+    {ic:"🍽️", nm:"自己收碗",       tag:"生活"},
+    {ic:"🧺", nm:"脏衣服放篮子里",  tag:"生活"},
+    {ic:"🚀", nm:"没人提醒，自己开始", tag:"元能力"}
   ];
   var pool = document.querySelector("[data-pool]");
   POOL.forEach(function(t){
     var c = el("div","pool");
-    c.innerHTML = '<span class="ic">' + t.ic + '</span><span class="nm">' + t.nm + '</span>';
+    c.innerHTML = '<span class="ic">' + t.ic + '</span>' +
+      '<span><span class="nm">' + t.nm + '</span>' +
+      '<span class="tag">' + t.tag + '</span></span>';
     pool.appendChild(c);
   });
+  for (var bl = 0; bl < 8; bl++){          // 留白卡：池子由家长维护，随时加
+    var b = el("div","pool blank");
+    b.innerHTML = '<span class="ic">＋</span><span class="nm">＿＿＿＿＿</span>';
+    pool.appendChild(b);
+  }
 
-  /* ---- 9. 奖励券 ×8（自主权 + 玩的时间，没有一张侵占睡眠）---- */
+  /* ---- 07. 毕业榜：撤下的卡贴这里。不是失去，是毕业 ---- */
+  var grad = document.querySelector("[data-grad]");
+  for (var g = 1; g <= 8; g++){
+    var r = el("div","grad-row");
+    r.innerHTML = '<span class="no">' + g + '</span>' +
+      '<span class="slot">把毕业的卡贴这里</span>' +
+      '<span class="when">毕业于 <span class="line"></span></span>';
+    grad.appendChild(r);
+  }
+
+  /* ---- 05. 奖励券 ×8（自主权 + 玩的时间，没有一张侵占睡眠）---- */
   var REWARDS = [
     {ic:"🍽️", nm:"今晚吃什么我定",   k:"🎫 自主权券"},
     {ic:"🎬", nm:"这周的电影我选",   k:"🎫 自主权券"},
@@ -1388,37 +1313,6 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
       '<div><div class="ic">' + r.ic + '</div><div class="nm">' + r.nm + '</div></div>' +
       '<div class="ft"><span>' + r.k + '</span><span>第 ____ 周</span></div>';
     rw.appendChild(c);
-  });
-
-  /* ---- 10. 周结算卡 ×2：他自己数、自己填、自己规划下周 ---- */
-  document.querySelectorAll("[data-settle]").forEach(function(box){
-    var head = el("div","s-head");
-    head.innerHTML =
-      '<div><div class="s-title" style="font-size:7.4mm">🗓️ 周日结算</div>' +
-      '<div class="s-sub">晚饭后 · 自己数、自己填 · 第 ____ 周</div></div>' +
-      '<div class="s-name">名字 <span class="line"></span></div>';
-    box.appendChild(head);
-
-    var steps = el("div","sc-steps");
-    steps.innerHTML =
-      '<div class="sc-step"><b>1</b><span>数「✅ 今天完成」那行涂满了几个 → 填进表上的<strong>本周完成</strong></span></div>' +
-      '<div class="sc-step"><b>2</b><span>数「🚀 主动星」那行贴了几颗 → 填进表上的<strong>本周主动星</strong></span></div>' +
-      '<div class="sc-step"><b>3</b><span>对照下面换券，自己挑一张</span></div>';
-    box.appendChild(steps);
-
-    var swap = el("div","sc-swap");
-    swap.innerHTML =
-      '完成 <b>≥ 5 天</b> → 拿 1 张「🎮 玩的时间」券<br>' +
-      '主动星 <b>≥ 4 颗</b> → 拿 1 张「🎫 自主权」券';
-    box.appendChild(swap);
-
-    var qs = el("div","sc-qs");
-    qs.innerHTML =
-      '<div class="hd">换完券，再回答三个问题</div>' +
-      '<div class="sc-q">① 这周哪一天最难？<span class="line"></span></div>' +
-      '<div class="sc-q">② 那天为什么难？<span class="line"></span></div>' +
-      '<div class="sc-q">③ 下周我想在哪天加把劲？ <em>（写星期几，和想做的那件事）</em><span class="line"></span></div>';
-    box.appendChild(qs);
   });
 
   /* ================= 教练台 ================= */
