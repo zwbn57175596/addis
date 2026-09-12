@@ -1,0 +1,9 @@
+# 预览/调试产物（Playwright、临时导出）
+.playwright-mcp/
+*.png
+*.pdf
+_printtest.html
+
+# 系统文件
+.DS_Store
+Thumbs.db

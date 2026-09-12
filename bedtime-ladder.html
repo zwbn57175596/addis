@@ -1,0 +1,1686 @@
+<title>晚安阶梯</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap">
+
+<style>
+/* ============================================================
+   晚安阶梯 — bedtime fading 打印包
+   屏幕：家长的协议台（冷静、仪表化）
+   纸面：孩子的墙面（线条为主，不依赖背景色打印）
+   ============================================================ */
+
+:root{
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,"PingFang SC","Microsoft YaHei",monospace;
+  --ink:#17203D;
+  --indigo:#33407A;
+  --amber:#B87309;
+  --gold:#8A6416;
+  --paper:#FBFAF7;
+  --page-bg:#F1F0EB;
+  --surface:#FFFFFF;
+  --rule:#D8D5CC;
+  --rule-soft:#E7E4DC;
+  --muted:#6B6F82;
+  --accent:#33407A;
+  --ok:#2F6B4F;
+  --warn:#A8551A;
+  --shadow:0 1px 2px rgba(23,32,61,.07), 0 8px 24px rgba(23,32,61,.08);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#E8E9F0;
+    --indigo:#9FB0EE;
+    --amber:#E8A33D;
+    --gold:#D9AE58;
+    --paper:#1B1D26;
+    --page-bg:#14161D;
+    --surface:#1F222C;
+    --rule:#343846;
+    --rule-soft:#2A2D38;
+    --muted:#9A9FB2;
+    --accent:#9FB0EE;
+    --ok:#6FBF95;
+    --warn:#E0A46A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#E8E9F0;
+  --indigo:#9FB0EE;
+  --amber:#E8A33D;
+  --gold:#D9AE58;
+  --paper:#1B1D26;
+  --page-bg:#14161D;
+  --surface:#1F222C;
+  --rule:#343846;
+  --rule-soft:#2A2D38;
+  --muted:#9A9FB2;
+  --accent:#9FB0EE;
+  --ok:#6FBF95;
+  --warn:#E0A46A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+
+body{
+  background:var(--page-bg);
+  color:var(--ink);
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei","Source Han Sans SC",system-ui,sans-serif;
+  font-size:15px;
+  line-height:1.65;
+  margin:0;
+}
+
+.wrap{
+  max-width:980px;
+  margin:0 auto;
+  padding-inline:20px;
+  padding-block:40px 72px;
+}
+
+/* ---------- screen typography ---------- */
+h1,h2,h3{font-family:"Noto Serif SC",Georgia,"Songti SC",serif;text-wrap:balance;margin:0}
+h1{font-size:2.1rem;font-weight:700;letter-spacing:-.01em;line-height:1.25}
+h2{font-size:1.25rem;font-weight:600;line-height:1.4}
+h3{font-size:1rem;font-weight:600}
+p{margin:0}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);
+}
+.lede{color:var(--muted);max-width:60ch}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* ---------- masthead ---------- */
+.masthead{display:flex;flex-direction:column;gap:14px;padding-bottom:26px;border-bottom:1px solid var(--rule)}
+.ladder{
+  display:flex;align-items:flex-end;gap:0;height:56px;margin-top:8px;width:240px;
+}
+.ladder i{
+  display:block;width:30px;
+  border-top:2px solid var(--rule);
+  border-right:1px solid var(--rule-soft);
+}
+.ladder i:nth-child(1){height:16%}
+.ladder i:nth-child(2){height:28%}
+.ladder i:nth-child(3){height:40%}
+.ladder i:nth-child(4){height:52%}
+.ladder i:nth-child(5){height:64%}
+.ladder i:nth-child(6){height:76%}
+.ladder i:nth-child(7){height:88%}
+.ladder i:nth-child(8){height:100%;border-right-color:transparent}
+.ladder i.on{border-top-color:var(--accent);border-top-width:3px}
+.ladder-note{display:flex;justify-content:space-between;width:240px;margin-top:6px}
+.ladder-note span{font-family:var(--mono);font-size:.76rem;color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* ---------- callout ---------- */
+.callout{
+  margin-top:30px;padding:18px 20px;
+  background:var(--surface);border:1px solid var(--rule);
+  border-left:3px solid var(--warn);
+  display:flex;flex-direction:column;gap:10px;
+}
+.callout h3{color:var(--warn)}
+.settings{display:flex;flex-direction:column;gap:7px;margin:0;padding:0;list-style:none}
+.settings li{display:flex;gap:10px;align-items:baseline;font-size:.92rem}
+.settings b{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;
+  color:var(--muted);border:1px solid var(--rule);padding:1px 6px;white-space:nowrap;
+}
+
+/* ---------- sheet block ---------- */
+.block{margin-top:52px}
+.block-head{
+  display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 20px;
+  padding-bottom:12px;border-bottom:1px solid var(--rule);margin-bottom:18px;
+}
+.block-head .grow{flex:1 1 260px;min-width:0}
+.meta{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:5px}
+.meta span{font-size:.83rem;color:var(--muted)}
+.meta span b{color:var(--ink);font-weight:500}
+
+.btn{
+  font-family:inherit;font-size:.88rem;font-weight:500;
+  color:var(--surface);background:var(--ink);
+  border:1px solid var(--ink);padding:9px 18px;cursor:pointer;
+  transition:opacity .15s ease;
+}
+.btn:hover{opacity:.85}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---------- sheet frame (screen preview) ---------- */
+.frame{
+  background:var(--surface);box-shadow:var(--shadow);
+  overflow:hidden;position:relative;
+}
+.frame .scaler{transform-origin:top left}
+
+/* ============================================================
+   SHEETS — always paper. Fixed light values by design.
+   All structure carried by rules, not fills, so the print
+   survives "background graphics" being switched off.
+   ============================================================ */
+.sheet{
+  --s-ink:#17203D;
+  --s-rule:#B9B6AC;
+  --s-hair:#D9D6CC;
+  --s-muted:#75798A;
+  background:#fff;color:var(--s-ink);
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  position:relative;
+}
+.sheet.land{width:297mm;height:207mm}
+.sheet.port{width:210mm;height:294mm}
+
+.s-pad{padding:10mm;height:100%;display:flex;flex-direction:column}
+
+/* sheet header */
+.s-head{display:flex;align-items:flex-end;justify-content:space-between;gap:8mm;padding-bottom:4mm;border-bottom:.6mm solid var(--s-ink)}
+.s-title{font-family:"Noto Serif SC",serif;font-weight:700;line-height:1.1;letter-spacing:.02em}
+.s-sub{font-size:3.1mm;color:var(--s-muted);margin-top:1.5mm}
+.s-name{display:flex;align-items:baseline;gap:2mm;font-size:3.4mm;color:var(--s-muted);white-space:nowrap}
+.s-name .line{display:inline-block;width:34mm;border-bottom:.35mm solid var(--s-rule)}
+
+/* weekday grid, shared */
+.grid{display:grid;border-left:.3mm solid var(--s-hair)}
+.grid > *{border-right:.3mm solid var(--s-hair);border-bottom:.3mm solid var(--s-hair);display:flex;align-items:center}
+.dh{justify-content:center;font-size:3.6mm;font-weight:700;color:var(--s-ink);border-bottom:.5mm solid var(--s-rule)}
+.dh.we{color:var(--s-muted)}
+.corner{border-right:.3mm solid var(--s-hair);border-bottom:.5mm solid var(--s-rule)}
+.task{gap:3mm;padding-left:3.5mm;font-size:4.2mm;font-weight:500}
+.task .ic{font-size:6.6mm;line-height:1;width:8mm;text-align:center}
+.task small{display:block;font-size:2.9mm;color:var(--s-muted);font-weight:400;margin-top:.6mm}
+.cell{justify-content:center}
+.cell svg{display:block;width:17mm;height:17mm}
+.writein{justify-content:center;font-size:3mm;color:#CFCBBF}
+
+/* evening footer */
+.ev-foot{flex:1;display:flex;align-items:center;gap:6mm;padding-top:4mm}
+.slot{
+  border:.6mm dashed var(--s-rule);padding:2.6mm 4mm;display:flex;align-items:center;gap:3mm;
+}
+.slot .lab{font-size:3mm;color:var(--s-muted);line-height:1.3;max-width:22mm}
+.slot .box{width:38mm;height:12mm;border:.35mm solid var(--s-hair);display:flex;align-items:center;justify-content:center;font-size:3mm;color:#CFCBBF}
+.rule-note{flex:1;font-size:3.2mm;line-height:1.5;color:var(--s-muted);border-left:.5mm solid var(--s-rule);padding-left:4mm}
+.rule-note b{color:var(--s-ink);font-weight:700}
+
+/* morning: two A5 on one A4 */
+.a5{height:147mm;padding:9mm 10mm;display:flex;flex-direction:column}
+.cutline{border-top:.4mm dashed var(--s-rule);position:relative;height:0}
+.cutline span{position:absolute;left:50%;top:-2.4mm;transform:translateX(-50%);background:#fff;padding:0 3mm;font-size:2.7mm;color:var(--s-muted)}
+
+/* tickets */
+.tix-grid{display:grid;grid-template-columns:repeat(3,63mm);grid-template-rows:repeat(3,88mm);flex:1}
+.tix{
+  border:.7mm solid var(--s-ink);margin:1.2mm;padding:4mm 4mm 3mm;
+  display:flex;flex-direction:column;position:relative;
+}
+.tix::before{
+  content:"";position:absolute;left:0;right:0;top:15mm;border-top:.4mm dashed #B9B6AC;
+}
+.tix-top{height:11mm;display:flex;align-items:center;gap:2mm}
+.tix-top .ic{font-size:7mm;line-height:1}
+.tix-top .nm{font-family:"Noto Serif SC",serif;font-size:4.4mm;font-weight:700;letter-spacing:.04em}
+.tix-body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:2.5mm;padding-top:3mm}
+.tix-body .big{font-size:5mm;font-weight:700;line-height:1.35}
+.tix-body .sm{font-size:3.2mm;color:var(--s-muted);line-height:1.6}
+.tix-body .free{color:var(--s-ink);font-weight:700;border-top:.35mm solid #D9D6CC;padding-top:2mm;margin-top:.5mm}
+.tix-foot{border-top:.35mm solid #D9D6CC;padding-top:2mm;display:flex;justify-content:space-between;align-items:baseline}
+.tix-foot .warn{font-size:2.9mm;color:var(--s-muted)}
+.tix-foot .sn{font-family:var(--mono);font-size:2.7mm;color:#BFBBAF;letter-spacing:.08em}
+
+/* bedtime cards */
+.tc-grid{display:grid;grid-template-columns:repeat(2,95mm);grid-template-rows:repeat(4,66mm);flex:1}
+.sheet-foot{height:10mm;display:flex;align-items:flex-end;justify-content:space-between;font-size:2.9mm;color:var(--s-muted)}
+
+/* ---------- coach panel ---------- */
+.coach{
+  margin-top:34px;display:grid;grid-template-columns:minmax(0,330px) minmax(0,1fr);
+  gap:1px;background:var(--rule);border:1px solid var(--rule);
+}
+.coach > *{background:var(--surface);padding:20px 22px;min-width:0}
+@media (max-width:760px){.coach{grid-template-columns:1fr}}
+
+.tonight{display:flex;flex-direction:column;gap:16px}
+.tonight .big{
+  font-family:var(--mono);font-size:3.3rem;font-weight:600;
+  line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;
+}
+.step-line{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:.86rem;color:var(--muted)}
+.pips-s{display:flex;gap:4px}
+.pips-s i{width:8px;height:8px;border:1px solid var(--accent);border-radius:50%;display:block}
+.pips-s i.on{background:var(--accent)}
+.verdict{font-size:.89rem;padding:11px 13px;border-left:3px solid var(--rule);color:var(--muted);line-height:1.55}
+.verdict.go{border-left-color:var(--ok);color:var(--ok);font-weight:500}
+.verdict b{color:var(--ink);font-weight:600}
+.verdict.go b{color:var(--ok)}
+
+.log-form{display:flex;flex-direction:column;gap:11px;border-top:1px solid var(--rule-soft);padding-top:16px}
+.field{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.field label{font-size:.87rem;color:var(--muted)}
+.field input[type="date"],.field input[type="time"]{
+  font-family:var(--mono);font-size:.9rem;padding:6px 9px;
+  border:1px solid var(--rule);background:var(--page-bg);color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.field input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.field.check{justify-content:flex-start;gap:9px}
+.field.check input{width:16px;height:16px;accent-color:var(--accent)}
+.field.check label{color:var(--ink)}
+.saved{font-size:.8rem;color:var(--ok);min-height:1.2em}
+.store-note{font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:7px;line-height:1.5}
+.store-note i{width:6px;height:6px;border-radius:50%;background:var(--muted);flex:0 0 6px;display:block}
+.store-note i.live{background:var(--ok)}
+
+/* ---------- charts ---------- */
+.charts{display:flex;flex-direction:column;gap:24px}
+.chart{position:relative;min-width:0}
+.chart h3{font-size:.95rem}
+.chart .sub{font-size:.79rem;color:var(--muted);margin-top:3px}
+.chart svg{width:100%;height:auto;display:block;margin-top:10px;overflow:visible}
+.axis{stroke:var(--rule);stroke-width:1;fill:none}
+.gridline{stroke:var(--rule-soft);stroke-width:1;fill:none}
+.target{stroke:var(--muted);stroke-width:1;stroke-dasharray:4 3;fill:none}
+.tick{fill:var(--muted);font-size:9px;font-family:var(--mono)}
+.tick.goal{fill:var(--ink)}
+.series{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.pt{fill:var(--accent);stroke:var(--surface);stroke-width:2}
+.pt.miss{fill:var(--surface);stroke:var(--accent);stroke-width:2}
+.hit{fill:transparent;cursor:pointer}
+.tip{
+  position:absolute;pointer-events:none;z-index:3;
+  background:var(--ink);color:var(--surface);font-size:.78rem;line-height:1.45;
+  padding:6px 9px;white-space:nowrap;transform:translate(-50%,-118%);
+  opacity:0;transition:opacity .12s ease;
+}
+.tip.on{opacity:1}
+.empty-chart{
+  padding:26px 18px;border:1px dashed var(--rule);color:var(--muted);
+  font-size:.86rem;text-align:center;line-height:1.6;margin-top:10px;
+}
+
+/* ---------- recent nights ---------- */
+.recent{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:10px}
+.recent th,.recent td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--rule-soft)}
+.recent th{
+  font-family:var(--mono);font-size:.67rem;font-weight:600;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--rule);
+}
+.recent td.n{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.recent td.hit-y{color:var(--ok);font-weight:500}
+
+/* ---------- stage grouping ---------- */
+.stage{margin-top:70px;padding-top:24px;border-top:2px solid var(--ink)}
+.stage-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px}
+.stage-head h2{font-size:1.5rem}
+.tag{
+  font-family:var(--mono);font-size:.67rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--rule);padding:2px 8px;color:var(--muted);white-space:nowrap;
+}
+.tag.now{border-color:var(--accent);color:var(--accent)}
+.unlock{margin-top:10px;font-size:.9rem;color:var(--muted);max-width:62ch}
+.unlock b{color:var(--ink);font-weight:500}
+
+/* ---------- bedtime ladder ruler ---------- */
+.lad{flex:1;display:flex;flex-direction:column-reverse;justify-content:flex-start;padding-top:3mm}
+.lad-step{display:flex;align-items:center;height:29mm}
+.lad-step .box{
+  width:92mm;border:.6mm solid var(--s-ink);padding:2.8mm 4mm;
+  display:flex;align-items:baseline;gap:3mm;
+}
+.lad-step.goal .box{border-width:1.1mm}
+.lad-step .t{font-family:var(--mono);font-size:9.5mm;font-weight:600;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
+.lad-step .n{font-size:3.2mm;color:var(--s-muted);white-space:nowrap}
+.lad-step.goal .n{color:var(--s-ink);font-weight:700}
+.lad-step .when{flex:1;display:flex;align-items:baseline;gap:2mm;padding-left:4mm;font-size:2.9mm;color:var(--s-muted);white-space:nowrap}
+.lad-step .when .line{flex:1;border-bottom:.35mm solid var(--s-hair);height:4.5mm;min-width:14mm}
+
+/* ---------- kit labels ---------- */
+.tag-grid{display:grid;grid-template-columns:repeat(2,95mm);grid-template-rows:repeat(2,132mm);flex:1}
+.ktag{border:.7mm solid var(--s-ink);margin:1.2mm;padding:5mm;display:flex;flex-direction:column}
+.ktag-top{display:flex;align-items:center;gap:3mm;border-bottom:.5mm solid var(--s-ink);padding-bottom:3mm}
+.ktag-top .ic{font-size:10mm;line-height:1}
+.ktag-top .nm{display:block;font-family:"Noto Serif SC",serif;font-size:5.8mm;font-weight:700;line-height:1.2}
+.ktag-top .sub{display:block;font-size:2.9mm;color:var(--s-muted);margin-top:1.2mm}
+.klist{flex:1;display:flex;flex-direction:column;gap:3.4mm;padding-top:4.5mm}
+.kitem{display:flex;align-items:center;gap:3mm;font-size:3.8mm}
+.kitem b{flex:0 0 5mm;height:5mm;border:.4mm solid var(--s-ink);display:block}
+.kitem .line{flex:1;border-bottom:.35mm solid var(--s-hair);height:5mm}
+.ktag-foot{border-top:.35mm solid #D9D6CC;padding-top:2.5mm;font-size:2.9mm;color:var(--s-muted)}
+
+/* ---------- reward vouchers ---------- */
+.rw{border:.7mm solid var(--s-ink);margin:1.2mm;padding:4mm 5mm;display:flex;flex-direction:column;justify-content:space-between}
+.rw .ic{font-size:9mm;line-height:1}
+.rw .nm{font-family:"Noto Serif SC",serif;font-size:5.2mm;font-weight:700;line-height:1.3;margin-top:1.5mm}
+.rw .ft{border-top:.35mm solid #D9D6CC;padding-top:2mm;display:flex;justify-content:space-between;font-size:2.8mm;color:var(--s-muted)}
+
+/* ---------- task pool ---------- */
+.pool-grid{display:grid;grid-template-columns:repeat(3,63mm);grid-template-rows:repeat(6,44mm);flex:1}
+.pool{border:.5mm solid var(--s-ink);margin:1mm;padding:3mm;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2mm;text-align:center}
+.pool .ic{font-size:8mm;line-height:1}
+.pool .nm{font-size:3.6mm;font-weight:500;line-height:1.3}
+.pool .amt{font-size:2.8mm;color:var(--s-muted)}
+
+/* ---------- daily sheet: rotation cell + estimate row ---------- */
+.rot{flex-direction:column;gap:1mm;justify-content:center}
+.rot .ic{font-size:5.4mm;line-height:1}
+.rot .nm{font-size:2.9mm;color:var(--s-muted)}
+.rot svg{width:11mm;height:11mm}
+.rot.rest{color:#CFCBBF;font-size:3.1mm}
+.est{display:grid;border-left:.3mm solid var(--s-hair)}
+.est > *{border-right:.3mm solid var(--s-hair);border-bottom:.3mm solid var(--s-hair);display:flex;align-items:center;justify-content:center;font-size:3mm;color:#CFCBBF}
+.est .lb{justify-content:flex-start;padding-left:3.5mm;color:var(--s-muted);font-size:3.3mm;font-weight:500}
+
+.donecell{justify-content:center}
+.donecell span{display:block;width:8mm;height:8mm;border:.4mm solid #C6C2B6}
+.settle{flex:1;display:flex;align-items:center;gap:5mm;padding-top:3.5mm}
+.settle > div{
+  flex:1;border:.5mm solid var(--s-ink);padding:2.6mm 4mm;font-size:3.5mm;
+  display:flex;align-items:baseline;gap:1.5mm;flex-wrap:wrap;line-height:1.4;
+}
+.settle b{font-weight:700}
+.settle .blank{display:inline-block;min-width:9mm;border-bottom:.4mm solid var(--s-rule)}
+.settle em{font-style:normal;font-size:2.9mm;color:var(--s-muted);flex-basis:100%}
+
+/* ---------- weekly settlement card ---------- */
+.sc-steps{display:flex;flex-direction:column;gap:3mm;margin-top:4.5mm}
+.sc-step{display:flex;gap:3mm;align-items:flex-start;font-size:3.6mm;line-height:1.45}
+.sc-step b{
+  flex:0 0 6mm;height:6mm;border:.4mm solid var(--s-ink);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:3mm;font-weight:700;
+}
+.sc-swap{margin-top:3.5mm;border:.5mm solid var(--s-ink);padding:3mm 4mm;font-size:3.4mm;line-height:1.65}
+.sc-swap b{font-weight:700}
+.sc-qs{margin-top:4mm;border-top:.5mm solid var(--s-rule);padding-top:3.5mm;display:flex;flex-direction:column;gap:3.5mm}
+.sc-qs .hd{font-size:3.2mm;color:var(--s-muted);letter-spacing:.06em}
+.sc-q{font-size:3.5mm;font-weight:500}
+.sc-q .line{display:block;border-bottom:.35mm solid var(--s-hair);height:7mm;margin-top:.5mm}
+.sc-q em{font-style:normal;font-weight:400;font-size:2.9mm;color:var(--s-muted)}
+
+/* ---------- how stars become rewards (screen) ---------- */
+.econ{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:6px}
+.lane{background:var(--surface);padding:18px 20px;display:flex;flex-direction:column;gap:9px}
+.lane .eyebrow{color:var(--accent)}
+.lane .rule{font-family:var(--mono);font-size:1.02rem;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.45}
+.lane p{font-size:.87rem;color:var(--muted)}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:16px;font-size:.88rem;color:var(--muted)}
+.flow span{border:1px solid var(--rule);padding:5px 11px;background:var(--surface);color:var(--ink)}
+.flow i{font-style:normal;color:var(--muted)}
+
+/* ---------- protocol table ---------- */
+.protocol{width:100%;border-collapse:collapse;margin-top:16px;font-size:.9rem}
+.protocol th,.protocol td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule-soft)}
+.protocol th{
+  font-family:var(--mono);font-size:.7rem;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  border-bottom:1px solid var(--rule);
+}
+.protocol td.n{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.tbl-wrap{overflow-x:auto}
+
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:18px}
+.pillar{background:var(--surface);padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.pillar .eyebrow{color:var(--accent)}
+.pillar p{font-size:.88rem;color:var(--muted)}
+
+.kit{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.kit li{display:flex;gap:12px;font-size:.9rem;align-items:baseline}
+.kit li::before{content:"";flex:0 0 6px;height:6px;border:1px solid var(--accent);transform:translateY(-2px)}
+.kit b{font-weight:500}
+.kit span{color:var(--muted)}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:var(--muted);font-size:.84rem}
+
+@media (max-width:560px){
+  h1{font-size:1.65rem}
+  .wrap{padding-block:28px 56px}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
+
+/* ============================================================
+   PRINT — one sheet per job, driven by its button.
+   ============================================================ */
+@media print{
+  /* 强制打印底色和线条，这样不勾「打印背景图形」也不会丢 */
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff}
+  /* 纸就是页面本身：外层容器的宽度/居中/内边距全部清零 */
+  html,body{margin:0 !important;padding:0 !important;background:#fff !important}
+  .wrap{max-width:none !important;width:auto !important;margin:0 !important;padding:0 !important}
+  /* only the ancestors of the sheet being printed survive (marked in JS) */
+  .wrap > *:not(.print-path){display:none !important}
+  .stage > *:not(.print-path){display:none !important}
+  .stage{margin:0 !important;padding:0 !important;border:0 !important}
+  .block > *:not(.frame){display:none !important}
+  .block{margin:0 !important}
+  .frame{display:none !important;box-shadow:none !important;background:#fff}
+  .frame.printing{display:block !important;height:auto !important;overflow:visible !important}
+  .frame .scaler{transform:none !important}
+  .sheet{break-inside:avoid}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="star" viewBox="0 0 24 24">
+      <path fill="none" stroke="#C6C2B6" stroke-width="1.4" d="M12 2.6l2.9 6.05 6.6.88-4.82 4.6 1.2 6.55L12 17.6l-5.88 3.08 1.2-6.55L2.5 9.53l6.6-.88z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div>
+      <p class="eyebrow">Bedtime Fading · 第 1 阶段</p>
+      <h1>晚安阶梯</h1>
+    </div>
+    <p class="lede">三个阶段，一次只上一个：先把上床时间从 23:00 推到 21:15，再把备料交还给他，最后才碰练字、架子鼓和编程。下面十张打印件按阶段分好了——<b style="color:var(--ink);font-weight:500">现在只打 01–04 加一张 09 奖励券</b>。</p>
+    <div>
+      <div class="ladder" role="img" aria-label="八级阶梯，当前在第一级">
+        <i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div class="ladder-note"><span>23:00 起点</span><span>21:15 目标</span></div>
+      <p class="eyebrow" style="margin-top:10px">第 1 阶段 · 上床时间 8 步</p>
+    </div>
+  </header>
+
+  <!-- ===== 教练台 ===== -->
+  <section class="coach">
+    <div class="tonight">
+      <div>
+        <p class="eyebrow">今晚上床时间</p>
+        <div class="big" data-tonight>23:00</div>
+      </div>
+      <div class="step-line">
+        <span>第 <b data-step>1</b> 步 / 共 8 步</span>
+        <span class="pips-s" data-pips role="img" aria-label="八步进度"></span>
+      </div>
+      <p class="verdict" data-verdict>还没有记录。今晚 23:00 上床，明早填第一条。</p>
+
+      <form class="log-form" data-log autocomplete="off">
+        <div class="field">
+          <label for="f-date">起床日期</label>
+          <input type="date" id="f-date" required>
+        </div>
+        <div class="field">
+          <label for="f-bed">上床</label>
+          <input type="time" id="f-bed" required>
+        </div>
+        <div class="field">
+          <label for="f-asleep">睡着</label>
+          <input type="time" id="f-asleep" required>
+        </div>
+        <div class="field">
+          <label for="f-wake">起床</label>
+          <input type="time" id="f-wake" required>
+        </div>
+        <div class="field check">
+          <input type="checkbox" id="f-pass">
+          <label for="f-pass">通行券整晚没用掉</label>
+        </div>
+        <button class="btn" type="submit">保存这一晚</button>
+        <p class="saved" data-saved role="status"></p>
+      </form>
+
+      <p class="store-note"><i data-store-dot></i><span data-store-note>正在连接…</span></p>
+    </div>
+
+    <div class="charts">
+      <div class="chart" data-chart="lat">
+        <h3>入睡用时</h3>
+        <p class="sub">躺下到睡着几分钟。这是唯一决定要不要换卡的指标——连续 3 晚 ≤ 20 分钟就推进。</p>
+        <div data-plot></div>
+        <div class="tip" data-tip></div>
+      </div>
+      <div class="chart" data-chart="dur">
+        <h3>睡眠时长</h3>
+        <p class="sub">睡着到起床几小时。6–8 岁该睡 9–12 小时。</p>
+        <div data-plot></div>
+        <div class="tip" data-tip></div>
+      </div>
+      <div>
+        <h3>最近 14 晚</h3>
+        <div data-recent></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="callout">
+    <h3>打印前必须改的三项设置</h3>
+    <ul class="settings">
+      <li><b>背景图形</b><span>已经用 CSS 强制打开了，不用你手动勾——预览里要是看不到灰线，再去勾一次「打印背景图形」。</span></li>
+      <li><b>缩放 100%</b><span>不要选「适合页面」，选了格子尺寸就不准了。</span></li>
+      <li><b>页眉页脚</b><span>关掉，否则纸上会多出网址和日期。</span></li>
+    </ul>
+    <p class="lede" style="font-size:.86rem">纸张选 A4。L3266 用普通纸时四边会留约 3mm 白边，属正常，设计已经避开那一圈。</p>
+  </section>
+
+  <section class="stage">
+    <div class="stage-head">
+      <h2>第 1 阶段 · 睡眠</h2>
+      <span class="tag now">现在做这个</span>
+    </div>
+    <p class="unlock">先把觉补回来，这一阶段<b>不放任何学习任务</b>。每天欠 1–2 小时觉的状态下执行功能本身就不够用，这时候加任务，两头都会崩。
+    <br>奖励券（打印件 09）从这一阶段就要打：<b>攒 5 张没用掉的通行券</b> 换 1 张「玩的时间」券，<b>攒满 7 张</b>（一整周没起来）换 1 张「自主权」券。</p>
+
+  <!-- ===== 1 · 晚上流程条 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">打印件 01</p>
+        <h2>晚上流程条</h2>
+        <div class="meta">
+          <span>A4 <b>横版</b></span>
+          <span>贴 <b>床头墙上</b></span>
+          <span>每周换 <b>一张</b></span>
+        </div>
+      </div>
+      <button class="btn" type="button" data-print="sheet-evening">打印这张</button>
+    </div>
+    <div class="frame" id="sheet-evening" data-orient="landscape">
+      <div class="scaler">
+        <div class="sheet land">
+          <div class="s-pad">
+            <div class="s-head">
+              <div>
+                <div class="s-title" style="font-size:9mm">🌙 我的晚上</div>
+                <div class="s-sub">做完一件，贴一颗星 · 第 ____ 周</div>
+              </div>
+              <div class="s-name">名字 <span class="line"></span></div>
+            </div>
+            <div class="grid ev-grid" style="grid-template-columns:62mm repeat(7,1fr);grid-template-rows:11mm repeat(5,25mm)"></div>
+            <div class="ev-foot">
+              <div class="slot">
+                <div class="lab">今晚<br>上床时间</div>
+                <div class="box">对照阶梯尺</div>
+              </div>
+              <div class="slot">
+                <div class="lab">昨晚我几分钟<br>就睡着了</div>
+                <div class="box">____ 分钟</div>
+              </div>
+              <div class="rule-note">
+                <b>换卡规则：</b>连续 <b>3 晚</b> 在 <b>20 分钟</b> 内睡着，就把上床时间卡换成早 15 分钟的那一张。<br>
+                没达标就留在原地，不往回退。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2 · 早上流程条 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">打印件 02</p>
+        <h2>早上流程条</h2>
+        <div class="meta">
+          <span>A4 竖版 · <b>裁成两张 A5</b></span>
+          <span>贴 <b>衣柜门 / 房门内侧</b></span>
+          <span>一张管 <b>一周</b></span>
+        </div>
+      </div>
+      <button class="btn" type="button" data-print="sheet-morning">打印这张</button>
+    </div>
+    <div class="frame" id="sheet-morning" data-orient="portrait">
+      <div class="scaler">
+        <div class="sheet port">
+          <div class="a5" data-morning></div>
+          <div class="cutline"><span>沿虚线剪开</span></div>
+          <div class="a5" data-morning></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3 · 免费通行券 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">打印件 03</p>
+        <h2>免费通行券</h2>
+        <div class="meta">
+          <span>A4 竖版 · <b>9 张</b></span>
+          <span>剪下放 <b>床头小盒</b></span>
+          <span>一晚 <b>一张</b></span>
+        </div>
+      </div>
+      <button class="btn" type="button" data-print="sheet-tickets">打印这张</button>
+    </div>
+    <div class="frame" id="sheet-tickets" data-orient="portrait">
+      <div class="scaler">
+        <div class="sheet port">
+          <div class="s-pad">
+            <div class="tix-grid" data-tickets></div>
+            <div class="sheet-foot">
+              <span>沿外框剪开 · 一晚发一张</span>
+              <span>整晚没用掉 → 贴一颗星，券自己收好攒着</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4 · 上床时间卡 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">打印件 04</p>
+        <h2>上床阶梯尺</h2>
+        <div class="meta">
+          <span>A4 竖版 · <b>整张不用剪</b></span>
+          <span>贴 <b>晚上流程条旁边</b></span>
+          <span>普通纸 · 印 <b>一次</b></span>
+        </div>
+      </div>
+      <button class="btn" type="button" data-print="sheet-times">打印这张</button>
+    </div>
+    <div class="frame" id="sheet-times" data-orient="portrait">
+      <div class="scaler">
+        <div class="sheet port">
+          <div class="s-pad">
+            <div class="s-head">
+              <div>
+                <div class="s-title" style="font-size:8mm">🌙 上床阶梯</div>
+                <div class="s-sub">一级一级往上走 · 连续 3 晚 20 分钟内睡着，就往上挪一格</div>
+              </div>
+              <div class="s-name">名字 <span class="line"></span></div>
+            </div>
+            <div class="lad" data-times></div>
+            <div class="sheet-foot">
+              <span>不用剪 · 整张贴墙上，用一个夹子夹住现在这一级</span>
+              <span>推进一步就往上挪一格 · 只往前走，不往回退</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 推进节奏 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">协议</p>
+        <h2>八步推进表</h2>
+      </div>
+    </div>
+    <p class="lede">起床时间全程锁死 07:30，周末最多睡到 08:00。推进只看一个指标：躺下到睡着的分钟数。</p>
+    <div class="tbl-wrap">
+      <table class="protocol">
+        <thead>
+          <tr><th>步</th><th>上床</th><th>起床</th><th>预计睡眠</th><th>推进条件</th></tr>
+        </thead>
+        <tbody data-protocol></tbody>
+      </table>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <p class="eyebrow">支柱一</p>
+        <h3>起床时间不许动</h3>
+        <p>比上床时间重要十倍。周末从 09:00 改到 08:00——每周补觉 1.5 小时，等于每个周末把生物钟又往后拨一次。</p>
+      </div>
+      <div class="pillar">
+        <p class="eyebrow">支柱二</p>
+        <h3>起床 30 分钟内见光</h3>
+        <p>拉开窗帘，最好到户外站几分钟，阴天也算。早上见光 → 当晚褪黑素提前分泌，这是拉回生物钟最强也最便宜的手段。</p>
+      </div>
+      <div class="pillar">
+        <p class="eyebrow">支柱三</p>
+        <h3>睡前 60–90 分钟断屏</h3>
+        <p>周三、周四的 Polly 20:00–20:30 固定不动。推进到 21:15 上床后它离睡觉只剩 45 分钟，<b>这两天入睡慢一些是预期内的，别当成没达标的信号</b>——每周总有这两天打断，连续达标的窗口实际是周五到周二那五天，够用。其余五天要守住断屏。</p>
+      </div>
+    </div>
+  </section>
+  </section><!-- /stage 1 -->
+
+  <!-- ============ 第 2 阶段 ============ -->
+  <section class="stage">
+    <div class="stage-head">
+      <h2>第 2 阶段 · 备料</h2>
+      <span class="tag">睡眠稳定后</span>
+    </div>
+    <p class="unlock">
+      解锁条件：上床时间走到 <b>第 5 步（22:00）</b> 之后，再稳定 <b>两周</b>。
+      这一阶段专治「什么都要家长准备」——把备料本身变成孩子的任务，而且提前一天做完。
+      <br>奖励券这里多一条通道：<b>装备检查连续 5 天</b> 换 1 张「玩的时间」券。
+    </p>
+
+  <!-- ===== 5 · 明日装备检查 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">打印件 05</p>
+        <h2>明日装备检查</h2>
+        <div class="meta">
+          <span>A4 竖版 · <b>裁成两张 A5</b></span>
+          <span>贴 <b>书桌 / 书包旁</b></span>
+          <span>睡前流程 <b>之前</b>做</span>
+        </div>
+      </div>
+      <button class="btn" type="button" data-print="sheet-kit">打印这张</button>
+    </div>
+    <div class="frame" id="sheet-kit" data-orient="portrait">
+      <div class="scaler">
+        <div class="sheet port">
+          <div class="a5" data-kit></div>
+          <div class="cutline"><span>沿虚线剪开</span></div>
+          <div class="a5" data-kit></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6 · 装备袋清单卡 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">打印件 06</p>
+        <h2>装备袋清单卡</h2>
+        <div class="meta">
+          <span>A4 竖版 · <b>4 张标签</b></span>
+          <span>贴 <b>每个袋子外面</b></span>
+          <span>空行 <b>你自己补</b></span>
+        </div>
+      </div>
+      <button class="btn" type="button" data-print="sheet-kittags">打印这张</button>
+    </div>
+    <div class="frame" id="sheet-kittags" data-orient="portrait">
+      <div class="scaler">
+        <div class="sheet port">
+          <div class="s-pad">
+            <div class="tag-grid" data-kittags></div>
+            <div class="sheet-foot">
+              <span>剪下来贴在对应的袋子上 · 他对着清单自己检查</span>
+              <span>「装明天的书包」那一格，就是照着这些勾</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </section><!-- /stage 2 -->
+
+  <!-- ============ 第 3 阶段 ============ -->
+  <section class="stage">
+    <div class="stage-head">
+      <h2>第 3 阶段 · 练习</h2>
+      <span class="tag">备料跑通后</span>
+    </div>
+    <p class="unlock">
+      解锁条件：装备检查连续 <b>两周</b> 不用提醒。
+      这一阶段才第一次出现练字和编程——而且量小到他没法拒绝。架子鼓家里没器材，不进每日表，只在卡池里留了不需要鼓的节奏练习。
+    </p>
+
+  <!-- ===== 星星怎么变成奖励 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">规则</p>
+        <h2>星星怎么变成奖励</h2>
+      </div>
+    </div>
+    <p class="lede">两条通道各走各的，可以都拿到，也可以只拿一条。关键是<b style="color:var(--ink);font-weight:500">奖励的性质要配得上它奖励的行为</b>——用自主权奖励主动，用玩的时间奖励完成。</p>
+    <div class="econ">
+      <div class="lane">
+        <p class="eyebrow">通道一 · 自制力 <b style="color:var(--muted);font-weight:400">第 1 阶段</b></p>
+        <p class="rule">攒 5 张没用掉的通行券<br>→ 1 张「玩的时间」券<br><span style="font-size:.88rem;color:var(--muted)">攒满 7 张 → 1 张「自主权」券</span></p>
+        <p>通行券是唯一一个<b style="color:var(--ink);font-weight:500">忍住不用才攒得下来</b>的东西，所以它天然是延迟满足的训练。它还是实体的——攒着看得见摸得着，比抽象的星星对这个年龄有效得多。</p>
+      </div>
+      <div class="lane">
+        <p class="eyebrow">通道二 · 完成度 <b style="color:var(--muted);font-weight:400">第 2–3 阶段</b></p>
+        <p class="rule">一天 ≥ 3 颗星 = 完成<br>一周完成 5 天 → 1 张「玩的时间」券</p>
+        <p>一天有 5 格，拿到 3 格就算数，其中「玩」那格几乎白送——门槛是故意压低的。七天里允许崩 2 天：全或无的规则，孩子断一次就放弃了。第 2 阶段是装备检查连续 5 天。</p>
+      </div>
+      <div class="lane">
+        <p class="eyebrow">通道三 · 主动性 <b style="color:var(--muted);font-weight:400">第 3 阶段</b></p>
+        <p class="rule">一周 4 颗主动星<br>→ 1 张「自主权」券</p>
+        <p>主动星＝没人提醒、自己开始。这是整套系统真正要培养的东西，所以它有独立的、更高级的回报通道，而不是和普通完成混在一起算。</p>
+      </div>
+    </div>
+    <p class="lede" style="margin-top:16px">
+      三个数字——<b style="color:var(--ink);font-weight:500">5 张、5 天、4 颗</b>——都在 10 以内，是故意的。
+      他周三就能自己算出「还差几个」，而这个算的动作本身就是规划训练，比拿到券更重要。
+    </p>
+    <div class="callout" style="border-left-color:var(--warn);margin-top:22px">
+      <h3 style="color:var(--warn)">一条必须守住的豁免：上厕所不用券</h3>
+      <p class="lede">通行券一旦能换奖励，就有了让他憋着的动力。<b style="color:var(--ink);font-weight:500">6–8 岁憋尿是真会出问题的。</b>所以券面上直接印了「上厕所不用券，随时去」——券只管喝水、要抱抱、想说句话这些可以等的事。这条要在第一天就当着他的面说清楚。</p>
+    </div>
+    <div class="flow">
+      <span>摸 3 张任务卡</span><i>→</i>
+      <span>自己挑 1 张做</span><i>→</i>
+      <span>当晚放回盒子</span><i>→</i>
+      <span>周日结算</span><i>→</i>
+      <span>他自己挑一张券</span><i>→</i>
+      <span>当周有效，过期不累积</span>
+    </div>
+
+    <div class="callout" style="border-left-color:var(--accent);margin-top:26px">
+      <h3 style="color:var(--accent)">结算由他自己做 —— 那你就不能是审计员</h3>
+      <p class="lede">这是这套系统里最容易做坏的一步。他数错了、或者多算了一天，<b style="color:var(--ink);font-weight:500">不要当场纠正</b>。多发一张「多玩 30 分钟」的代价几乎是零，而「被当场戳穿」的代价很大——一次就够让他再也不想碰这张表。</p>
+      <ul class="settings">
+        <li><b>别说</b><span>「你这天明明没练字，怎么算完成了？」——一句话就把自主变回了监工。</span></li>
+        <li><b>要说</b><span>「这周你自己算下来几天？」然后听他说完，不接话。</span></li>
+        <li><b>真正有用的</b><span>「哪一天最难？」——结算卡上的三个问题就是干这个的，第三问「下周想在哪天加把劲」才是时间规划真正开始的地方。</span></li>
+      </ul>
+      <p class="lede" style="font-size:.86rem">设计上已经把争议压到最小：他只需要数两行——「今天完成」的方框和「主动星」的贴纸，都是涂了就算、没涂就不算，没有解释空间。</p>
+    </div>
+  </section>
+
+  <!-- ===== 7 · 每日三卡表 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">打印件 07</p>
+        <h2>每日三卡表</h2>
+        <div class="meta">
+          <span>A4 <b>横版</b></span>
+          <span>贴 <b>书桌前</b></span>
+          <span>每周换 <b>一张</b></span>
+        </div>
+      </div>
+      <button class="btn" type="button" data-print="sheet-daily">打印这张</button>
+    </div>
+    <div class="frame" id="sheet-daily" data-orient="landscape">
+      <div class="scaler">
+        <div class="sheet land">
+          <div class="s-pad">
+            <div class="s-head">
+              <div>
+                <div class="s-title" style="font-size:8.4mm">⭐ 我的一天</div>
+                <div class="s-sub">每天三张卡 · 玩也要打卡 · 周日他自己结算 · 第 ____ 周</div>
+              </div>
+              <div class="s-name">名字 <span class="line"></span></div>
+            </div>
+            <div class="grid daily-grid"></div>
+            <div class="est"></div>
+            <div class="settle">
+              <div><b>本周完成</b> <span class="blank"></span> 天
+                <em>满 5 天 → 换 1 张「玩的时间」券 · 允许崩 2 天</em></div>
+              <div><b>本周主动星</b> <span class="blank"></span> 颗
+                <em>满 4 颗 → 换 1 张「自主权」券</em></div>
+              <div style="border:0;padding-left:0">
+                <b style="font-size:3.1mm">最小量</b>
+                <em>练字＝写 3 个字 · 编程＝打开看一眼上次做的<br>打卡打的是「做了」，不是「做了多久」</em></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 8 · 任务卡池 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">打印件 08</p>
+        <h2>任务卡池</h2>
+        <div class="meta">
+          <span>A4 竖版 · <b>18 张</b></span>
+          <span>放 <b>书桌上的小盒</b></span>
+          <span>摸 3 张挑 <b>一张</b></span>
+        </div>
+      </div>
+      <button class="btn" type="button" data-print="sheet-pool">打印这张</button>
+    </div>
+    <div class="frame" id="sheet-pool" data-orient="portrait">
+      <div class="scaler">
+        <div class="sheet port">
+          <div class="s-pad">
+            <div class="pool-grid" data-pool></div>
+            <div class="sheet-foot">
+              <span>摸 3 张 → 从这 3 张里自己挑 1 张做 → 另外 2 张放回去</span>
+              <span>做完的当晚也放回盒子 · 这一格别替他挑</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 9 · 奖励券 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">打印件 09</p>
+        <h2>奖励券</h2>
+        <div class="meta">
+          <span>A4 竖版 · <b>8 张</b></span>
+          <span>第 1 阶段就 <b>开始用</b></span>
+          <span>由他 <b>自己挑</b></span>
+        </div>
+      </div>
+      <button class="btn" type="button" data-print="sheet-rewards">打印这张</button>
+    </div>
+    <div class="frame" id="sheet-rewards" data-orient="portrait">
+      <div class="scaler">
+        <div class="sheet port">
+          <div class="s-pad">
+            <div class="tc-grid" data-rewards></div>
+            <div class="sheet-foot">
+              <span>家长保管 · 周日结算时发 · 他自己挑一张</span>
+              <span>写上周数，当周有效，过期不累积</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===== 10 · 周结算卡 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">打印件 10</p>
+        <h2>周结算卡</h2>
+        <div class="meta">
+          <span>A4 竖版 · <b>裁成两张 A5</b></span>
+          <span>贴 <b>每日三卡表旁边</b></span>
+          <span>周日晚饭后 · <b>他自己数</b></span>
+        </div>
+      </div>
+      <button class="btn" type="button" data-print="sheet-settle">打印这张</button>
+    </div>
+    <div class="frame" id="sheet-settle" data-orient="portrait">
+      <div class="scaler">
+        <div class="sheet port">
+          <div class="a5" data-settle></div>
+          <div class="cutline"><span>沿虚线剪开</span></div>
+          <div class="a5" data-settle></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </section><!-- /stage 3 -->
+
+  <!-- ===== 耗材 ===== -->
+  <section class="block">
+    <div class="block-head">
+      <div class="grow">
+        <p class="eyebrow">采买</p>
+        <h2>要准备的东西</h2>
+      </div>
+    </div>
+    <ul class="kit">
+      <li><b>普通 A4 复印纸就够</b><span>十张打印件全是 A4，没有一张需要 A3，也没有一张非厚纸不可。别用光面照片纸——贴纸粘不牢还贵。</span></li>
+      <li><b>现成的儿童奖励贴纸</b><span>直径 15–20mm 的最合适。别自己打不干胶，多一道工序就是多一个断掉的理由。</span></li>
+      <li><b>无痕胶 / 美纹纸胶带</b><span>贴墙不留痕。</span></li>
+      <li><b>一个夹子</b><span>夹在阶梯尺当前那一级，推进一步往上挪一格。</span></li>
+      <li><b>一个小盒子</b><span>放通行券和任务卡，床头 / 书桌够得着的地方。</span></li>
+      <li><b>宽透明胶带（可选）</b><span>没有厚纸时，把要反复摸的卡片两面各封一层，普通纸也能撑很久。快递盒纸板剪一剪垫在背面同样管用。</span></li>
+    </ul>
+
+    <h3 style="margin-top:30px">用纸量</h3>
+    <div class="tbl-wrap">
+      <table class="protocol">
+        <thead><tr><th>频率</th><th>打印件</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>只印一次</td><td>04 阶梯尺 · 06 装备袋标签 · 08 任务卡池</td><td class="n">3 张</td></tr>
+          <tr><td>每周</td><td>01 晚上流程条 · 07 每日三卡表</td><td class="n">2 张</td></tr>
+          <tr><td>看情况</td><td>03 通行券</td><td class="n">兑掉的会还给你再发，只有真用掉的才消耗——头几周约 1 张 / 周，后面越来越少</td></tr>
+          <tr><td>每 2 周</td><td>02 早上流程条 · 05 装备检查 · 10 周结算卡</td><td class="n">1.5 张 / 周</td></tr>
+          <tr><td>每 4 周</td><td>09 奖励券</td><td class="n">0.25 张 / 周</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede" style="margin-top:14px">
+      <b style="color:var(--ink);font-weight:500">第 1 阶段现在只要打 5 张</b>：01、02、03、04，加一张 09 奖励券（通行券攒够了要换的就是它）。
+      想一次备齐 8 周就是 21 张（01 ×8、02 ×4、03 ×7、04 ×1、09 ×1）。
+      三个阶段全跑起来后约 <b style="color:var(--ink);font-weight:500">4 张 / 周</b>，一年 200 张出头——半包 A4 都不到。
+    </p>
+  </section>
+
+  <footer>
+    第 1 阶段跑满 4 周，如果入睡仍然要 45 分钟以上，建议看一次儿科——排查打鼾／腺样体、不安腿、或焦虑。<br>
+    第 2、3 阶段的打印件放在这里是让你看到全貌，不是让你现在打——只有 09 奖励券例外，第 1 阶段就要用。一次上一个阶段，前一个稳住了再往下走。
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var DAYS = [
+    {t:"一"},{t:"二"},{t:"三"},{t:"四"},{t:"五"},{t:"六",we:1},{t:"日",we:1}
+  ];
+
+  function el(tag, cls, html){
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (html != null) n.innerHTML = html;
+    return n;
+  }
+  function starCell(){
+    var c = el("div","cell");
+    c.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#star"/></svg>';
+    return c;
+  }
+  function dayHeaders(grid){
+    grid.appendChild(el("div","corner"));
+    DAYS.forEach(function(d){
+      grid.appendChild(el("div","dh" + (d.we ? " we" : ""), d.t));
+    });
+  }
+  function taskRow(grid, icon, name, note, kind){
+    grid.appendChild(el("div","task",
+      '<span class="ic">' + icon + '</span><span>' + name +
+      (note ? '<small>' + note + '</small>' : '') + '</span>'));
+    for (var i = 0; i < 7; i++){
+      grid.appendChild(kind === "write" ? el("div","writein","__:__") : starCell());
+    }
+  }
+
+  /* ---- 1. evening grid ---- */
+  var ev = document.querySelector(".ev-grid");
+  dayHeaders(ev);
+  taskRow(ev, "🛁", "洗澡", "");
+  taskRow(ev, "🦷", "换睡衣 · 刷牙", "");
+  taskRow(ev, "📖", "读书", "关灯前的最后一件事");
+  taskRow(ev, "🛏️", "关灯躺下", "");
+  taskRow(ev, "🎫", "通行券没用掉", "攒 5 张换奖励券");
+
+  /* ---- 2. morning A5 ×2 ---- */
+  document.querySelectorAll("[data-morning]").forEach(function(box){
+    var head = el("div","s-head");
+    head.innerHTML =
+      '<div><div class="s-title" style="font-size:7.4mm">☀️ 我的早上</div>' +
+      '<div class="s-sub">起床后 30 分钟内见到光 · 第 ____ 周</div></div>' +
+      '<div class="s-name">名字 <span class="line"></span></div>';
+    box.appendChild(head);
+
+    var g = el("div","grid");
+    g.style.gridTemplateColumns = "48mm repeat(7,1fr)";
+    g.style.gridTemplateRows = "9mm 30mm 30mm 22mm";
+    dayHeaders(g);
+    taskRow(g, "🪟", "拉开窗帘", "");
+    taskRow(g, "👕", "自己穿好衣服", "");
+    taskRow(g, "⏰", "今天几点起的", "写下来", "write");
+    box.appendChild(g);
+
+    var foot = el("div","rule-note");
+    foot.style.cssText = "margin-top:4mm;border-left:.5mm solid var(--s-rule);padding-left:4mm;font-size:3.1mm";
+    foot.innerHTML = '<b>起床时间不许动：</b>上学日 07:30，周末最多 08:00。这一条比几点上床重要得多。';
+    box.appendChild(foot);
+  });
+
+  /* ---- 3. tickets ×9 ---- */
+  var tx = document.querySelector("[data-tickets]");
+  for (var i = 1; i <= 9; i++){
+    var t = el("div","tix");
+    t.innerHTML =
+      '<div class="tix-top"><span class="ic">🎫</span><span class="nm">免费通行券</span></div>' +
+      '<div class="tix-body">' +
+        '<div class="big">可以起来一次</div>' +
+        '<div class="sm">喝水 · 要一个抱抱 · 想说句话</div>' +
+        '<div class="sm free">上厕所不用券，随时去</div>' +
+      '</div>' +
+      '<div class="tix-foot"><span class="warn">没用掉就攒起来</span>' +
+      '<span class="sn">NO.' + String(i).padStart(2,"0") + '</span></div>';
+    tx.appendChild(t);
+  }
+
+  /* ---- 4. bedtime cards ×8 ---- */
+  var TIMES = ["23:00","22:45","22:30","22:15","22:00","21:45","21:30","21:15"];
+  // 一整张阶梯：他能看见自己走了多远、还剩几级——8 张散卡看不到全局
+  var tc = document.querySelector("[data-times]");
+  TIMES.forEach(function(time, idx){
+    var step = idx + 1, goal = step === 8;
+    var row = el("div","lad-step" + (goal ? " goal" : ""));
+    row.style.marginLeft = (idx * 13) + "mm";
+    row.innerHTML =
+      '<div class="box">' +
+        '<span class="t">' + time + '</span>' +
+        '<span class="n">第 ' + step + ' 步' + (goal ? " · 目标" : "") + '</span>' +
+      '</div>' +
+      '<div class="when">到达 <span class="line"></span></div>';
+    tc.appendChild(row);
+  });
+
+  /* ---- protocol table ---- */
+  var tb = document.querySelector("[data-protocol]");
+  TIMES.forEach(function(time, idx){
+    var sleep = sleepHours(time);
+    var tr = document.createElement("tr");
+    tr.innerHTML =
+      '<td class="n">' + (idx + 1) + '</td>' +
+      '<td class="n">' + time + '</td>' +
+      '<td class="n">07:30</td>' +
+      '<td class="n">' + sleep + ' 小时</td>' +
+      '<td>' + (idx === 7 ? '到达目标，保持' : '连续 3 晚 ≤ 20 分钟入睡') + '</td>';
+    tb.appendChild(tr);
+  });
+  function toMin(t){ var p = t.split(":"); return (+p[0]) * 60 + (+p[1]); }
+  function sleepHours(bed){
+    // 躺下 20 分钟内睡着，07:30 起床
+    var asleep = toMin(bed) + 20;
+    var total = (7 * 60 + 30) + (24 * 60) - asleep;
+    return (total / 60).toFixed(1).replace(/\.0$/,"");
+  }
+
+  /* ================= 第 2 阶段 ================= */
+
+  /* ---- 5. 明日装备检查 ×2 ---- */
+  document.querySelectorAll("[data-kit]").forEach(function(box){
+    var head = el("div","s-head");
+    head.innerHTML =
+      '<div><div class="s-title" style="font-size:7.4mm">📦 明天的装备</div>' +
+      '<div class="s-sub">睡前流程之前做完 · 第 ____ 周</div></div>' +
+      '<div class="s-name">名字 <span class="line"></span></div>';
+    box.appendChild(head);
+
+    var g = el("div","grid");
+    g.style.gridTemplateColumns = "48mm repeat(7,1fr)";
+    g.style.gridTemplateRows = "9mm 30mm 30mm 30mm";
+    dayHeaders(g);
+    taskRow(g, "🎒", "装明天的书包", "对着课程表");
+    taskRow(g, "✏️", "要用的摆桌上", "作业纸 · 水杯");
+    taskRow(g, "🗂️", "今天的东西归位", "");
+    box.appendChild(g);
+
+    var foot = el("div","rule-note");
+    foot.style.cssText = "margin-top:3.5mm;border-left:.5mm solid var(--s-rule);padding-left:4mm;font-size:3.1mm";
+    foot.innerHTML = '<b>装备袋：</b>练字袋 · 编程包 · 架子鼓包 · 书包，各贴一张清单卡（打印件 06），对着勾。';
+    box.appendChild(foot);
+  });
+
+
+  /* ---- 6. 装备袋清单卡 ×4：备料的大头是实体材料，清单化才治本 ---- */
+  var KITS = [
+    {ic:"✍️", nm:"练字袋", sub:"周二 · 三 · 四 · 六 用",
+     items:["米字格纸","笔","字帖","上次写的那张"], blanks:4,
+     foot:"写完放回袋子，下次接着写"},
+    {ic:"💻", nm:"编程包", sub:"周一 · 周日 用",
+     items:["iPad","笔记本","笔","上次做到哪"], blanks:4,
+     foot:"课后当天打开看一眼就算数"},
+    {ic:"🥁", nm:"架子鼓包", sub:"周五上课带",
+     items:["鼓棒","谱子","课本","水"], blanks:4,
+     foot:"周五出门前自己检查一遍"},
+    {ic:"🎒", nm:"明天的书包", sub:"每晚睡前装",
+     items:["对着课程表的书","作业本","水杯","红领巾"], blanks:4,
+     foot:"睡前流程之前装好"}
+  ];
+  var ktg = document.querySelector("[data-kittags]");
+  KITS.forEach(function(k){
+    var c = el("div","ktag");
+    var rows = k.items.map(function(it){
+      return '<div class="kitem"><b></b><span>' + it + '</span></div>';
+    }).join("");
+    for (var b = 0; b < k.blanks; b++){
+      rows += '<div class="kitem"><b></b><span class="line"></span></div>';
+    }
+    c.innerHTML =
+      '<div class="ktag-top"><span class="ic">' + k.ic + '</span>' +
+      '<span><span class="nm">' + k.nm + '</span>' +
+      '<span class="sub">' + k.sub + '</span></span></div>' +
+      '<div class="klist">' + rows + '</div>' +
+      '<div class="ktag-foot">' + k.foot + '</div>';
+    ktg.appendChild(c);
+  });
+
+  /* ================= 第 3 阶段 ================= */
+
+  /* ---- 7. 每日三卡表 ---- */
+  // 轮换跟着课程走：课后一两天内练，记忆最新、阻力最小
+  var ROT = [
+    {ic:"💻", nm:"编程"},   // 周日下午刚上完编程课，iPad 上就能做
+    {ic:"✍️", nm:"练字"},
+    {ic:"✍️", nm:"练字"},   // Polly 日，量小
+    {ic:"✍️", nm:"练字"},   // Polly 日，量小
+    {ic:"",   nm:"休息", rest:true}, // 周五鼓课日，18:30 才到家
+    {ic:"✍️", nm:"练字"},   // 周六上午刚上完练字班
+    {ic:"💻", nm:"编程"}    // 周日下午上课，晚上复现
+  ];
+  // 家里没鼓，架子鼓不进每日表；节奏练习留在卡池里（不需要器材）
+
+  var dg = document.querySelector(".daily-grid");
+  dg.style.gridTemplateColumns = "62mm repeat(7,1fr)";
+  dg.style.gridTemplateRows = "9mm 21mm 24mm 24mm 21mm 21mm 14mm";
+  dayHeaders(dg);
+  taskRow(dg, "📚", "作业", "每天都有");
+
+  dg.appendChild(el("div","task",
+    '<span class="ic">🔄</span><span>今天练什么<small>跟着课走，趁热练</small></span>'));
+  ROT.forEach(function(r){
+    var c = el("div","cell rot" + (r.rest ? " rest" : ""));
+    c.innerHTML = r.rest
+      ? "休息"
+      : '<span class="ic">' + r.ic + '</span><span class="nm">' + r.nm + '</span>' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#star"/></svg>';
+    dg.appendChild(c);
+  });
+
+  dg.appendChild(el("div","task",
+    '<span class="ic">⭐</span><span>我自己选的<small>摸 3 张，挑 1 张</small></span>'));
+  for (var p = 0; p < 7; p++) dg.appendChild(el("div","writein","贴卡片"));
+
+  taskRow(dg, "🎮", "玩", "这一格也要打卡");
+  taskRow(dg, "🚀", "主动星", "没人提醒，自己开始");
+
+  /* 日结算：当天拿到 3 颗星以上就涂满，周末数格子 */
+  dg.appendChild(el("div","task",
+    '<span class="ic">✅</span><span>今天完成<small>拿到 3 颗星以上</small></span>'));
+  for (var dn = 0; dn < 7; dn++) dg.appendChild(el("div","cell donecell","<span></span>"));
+
+  /* 估时游戏：猜 vs 实际，这是时间感真正长出来的地方 */
+  var est = document.querySelector(".est");
+  est.style.gridTemplateColumns = "62mm repeat(7,1fr)";
+  est.style.gridTemplateRows = "10mm 10mm";
+  est.appendChild(el("div","lb",'⏱️ 我猜要几分钟'));
+  for (var e1 = 0; e1 < 7; e1++) est.appendChild(el("div",null,"＿＿"));
+  est.appendChild(el("div","lb",'✔️ 实际用了几分钟'));
+  for (var e2 = 0; e2 < 7; e2++) est.appendChild(el("div",null,"＿＿"));
+
+  /* ---- 8. 任务卡池 ×18 ---- */
+  var POOL = [
+    {ic:"✍️", nm:"多写 5 个字"},   {ic:"🥁", nm:"用手打一段节奏"},  {ic:"📖", nm:"读一本绘本"},
+    {ic:"🎨", nm:"画一张画"},      {ic:"🏃", nm:"出去跑一圈"},   {ic:"🧩", nm:"拼一次拼图"},
+    {ic:"💻", nm:"编程多做一题"},  {ic:"🗣️", nm:"英语跟读 3 句"}, {ic:"🎵", nm:"跟着歌打节拍"},
+    {ic:"📕", nm:"翻一遍明天的课本"},  {ic:"🧹", nm:"收拾一次书桌"}, {ic:"🪴", nm:"给植物浇水"},
+    {ic:"🍳", nm:"帮忙做一道菜"},  {ic:"🧱", nm:"搭一次积木"},   {ic:"✂️", nm:"做一个手工"},
+    {ic:"🐾", nm:"陪家人散步"},    {ic:"📝", nm:"写一句今天的事"}, {ic:"💤", nm:"提前 10 分钟躺下"}
+  ];
+  var pool = document.querySelector("[data-pool]");
+  POOL.forEach(function(t){
+    var c = el("div","pool");
+    c.innerHTML = '<span class="ic">' + t.ic + '</span><span class="nm">' + t.nm + '</span>';
+    pool.appendChild(c);
+  });
+
+  /* ---- 9. 奖励券 ×8（自主权 + 玩的时间，没有一张侵占睡眠）---- */
+  var REWARDS = [
+    {ic:"🍽️", nm:"今晚吃什么我定",   k:"🎫 自主权券"},
+    {ic:"🎬", nm:"这周的电影我选",   k:"🎫 自主权券"},
+    {ic:"🗓️", nm:"周末干什么我定",   k:"🎫 自主权券"},
+    {ic:"🛒", nm:"逛超市我挑一样",   k:"🎫 自主权券"},
+    {ic:"⏰", nm:"周六多玩 30 分钟", k:"🎮 玩的时间券"},
+    {ic:"🎮", nm:"多一局游戏",       k:"🎮 玩的时间券"},
+    {ic:"🏞️", nm:"周末多去一次公园", k:"🎮 玩的时间券"},
+    {ic:"👦", nm:"请一个朋友来玩",   k:"🎮 玩的时间券"}
+  ];
+  var rw = document.querySelector("[data-rewards]");
+  REWARDS.forEach(function(r){
+    var c = el("div","rw");
+    c.innerHTML =
+      '<div><div class="ic">' + r.ic + '</div><div class="nm">' + r.nm + '</div></div>' +
+      '<div class="ft"><span>' + r.k + '</span><span>第 ____ 周</span></div>';
+    rw.appendChild(c);
+  });
+
+  /* ---- 10. 周结算卡 ×2：他自己数、自己填、自己规划下周 ---- */
+  document.querySelectorAll("[data-settle]").forEach(function(box){
+    var head = el("div","s-head");
+    head.innerHTML =
+      '<div><div class="s-title" style="font-size:7.4mm">🗓️ 周日结算</div>' +
+      '<div class="s-sub">晚饭后 · 自己数、自己填 · 第 ____ 周</div></div>' +
+      '<div class="s-name">名字 <span class="line"></span></div>';
+    box.appendChild(head);
+
+    var steps = el("div","sc-steps");
+    steps.innerHTML =
+      '<div class="sc-step"><b>1</b><span>数「✅ 今天完成」那行涂满了几个 → 填进表上的<strong>本周完成</strong></span></div>' +
+      '<div class="sc-step"><b>2</b><span>数「🚀 主动星」那行贴了几颗 → 填进表上的<strong>本周主动星</strong></span></div>' +
+      '<div class="sc-step"><b>3</b><span>对照下面换券，自己挑一张</span></div>';
+    box.appendChild(steps);
+
+    var swap = el("div","sc-swap");
+    swap.innerHTML =
+      '完成 <b>≥ 5 天</b> → 拿 1 张「🎮 玩的时间」券<br>' +
+      '主动星 <b>≥ 4 颗</b> → 拿 1 张「🎫 自主权」券';
+    box.appendChild(swap);
+
+    var qs = el("div","sc-qs");
+    qs.innerHTML =
+      '<div class="hd">换完券，再回答三个问题</div>' +
+      '<div class="sc-q">① 这周哪一天最难？<span class="line"></span></div>' +
+      '<div class="sc-q">② 那天为什么难？<span class="line"></span></div>' +
+      '<div class="sc-q">③ 下周我想在哪天加把劲？ <em>（写星期几，和想做的那件事）</em><span class="line"></span></div>';
+    box.appendChild(qs);
+  });
+
+  /* ================= 教练台 ================= */
+
+  var LAT_GATE = 20;     // 分钟：达标线
+  var RUN_NEEDED = 3;    // 连续几晚达标才推进
+  var SLEEP_GOAL = 9;    // 小时：6–8 岁的下限
+  var STORE_KEY = "ladder.sleep.v1";
+
+  function q(s){ return document.querySelector(s); }
+  function pad2(n){ return (n < 10 ? "0" : "") + n; }
+  function todayStr(){
+    var d = new Date();
+    return d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());
+  }
+  function dowOf(s){ var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]).getDay(); }
+  function defaultWake(s){ var d = dowOf(s); return (d === 0 || d === 6) ? "08:00" : "07:30"; }
+  function mins(t){ var p = String(t).split(":"); return (+p[0]) * 60 + (+p[1]); }
+  function span(a, b){ var d = mins(b) - mins(a); return d < 0 ? d + 1440 : d; }
+  function mmdd(s){ var p = s.split("-"); return (+p[1]) + "/" + (+p[2]); }
+  function hrs(m){ return (m / 60).toFixed(1).replace(/\.0$/, ""); }
+
+  /* 每晚的 step 由记录推出来，不单独存 —— 免得两边对不上 */
+  function derive(nights){
+    var keys = Object.keys(nights).sort();
+    var step = 1, run = 0, advancedOn = null, rows = [];
+    keys.forEach(function(k){
+      var n = nights[k];
+      if (!n || !n.bed || !n.asleep || !n.wake) return;
+      var lat = span(n.bed, n.asleep);
+      var ok = lat <= LAT_GATE;
+      rows.push({
+        date: k, bed: n.bed, asleep: n.asleep, wake: n.wake, pass: !!n.pass,
+        lat: lat, dur: span(n.asleep, n.wake), ok: ok, step: step
+      });
+      if (ok){
+        run++;
+        if (run >= RUN_NEEDED && step < 8){ step++; run = 0; advancedOn = k; }
+      } else run = 0;
+    });
+    return { rows: rows, step: step, run: run, advancedOn: advancedOn };
+  }
+
+  function render(nights){
+    var d = derive(nights);
+    var tonight = TIMES[d.step - 1];
+
+    q("[data-tonight]").textContent = tonight;
+    q("[data-step]").textContent = d.step;
+
+    var pips = "";
+    for (var i = 1; i <= 8; i++) pips += '<i class="' + (i <= d.step ? "on" : "") + '"></i>';
+    q("[data-pips]").innerHTML = pips;
+    document.querySelectorAll(".ladder i").forEach(function(n, ix){
+      n.classList.toggle("on", ix < d.step);
+    });
+
+    var v = q("[data-verdict]"), last = d.rows[d.rows.length - 1];
+    v.classList.remove("go");
+    if (!d.rows.length){
+      v.innerHTML = "还没有记录。今晚 <b>" + tonight + "</b> 上床，明早填第一条。";
+    } else if (last && d.advancedOn === last.date && d.step <= 8){
+      v.classList.add("go");
+      v.innerHTML = "达标了！把时间卡换成 <b>" + tonight + "</b>。";
+    } else if (d.step === 8){
+      v.innerHTML = "已经走到目标 <b>21:15</b>，保持住就行。起床时间别松。";
+    } else {
+      var need = RUN_NEEDED - d.run;
+      v.innerHTML = d.run === 0
+        ? "还要 <b>连续 3 晚</b> 在 20 分钟内睡着才能换卡。没达标就留在原地，不往回退。"
+        : "已经连着 <b>" + d.run + " 晚</b> 达标，再来 <b>" + need + " 晚</b> 就能换成 " + TIMES[d.step] + "。";
+    }
+
+    drawChart("lat", d.rows);
+    drawChart("dur", d.rows);
+    renderRecent(d.rows);
+
+    var fBed = document.getElementById("f-bed");
+    if (fBed && !fBed.value) fBed.value = tonight;
+  }
+
+  /* ---- 两张单序列折线图：达标与否用实心／空心点区分，不靠颜色 ---- */
+  function drawChart(kind, rows){
+    var host = document.querySelector('[data-chart="' + kind + '"]');
+    var plot = host.querySelector("[data-plot]");
+    var tip = host.querySelector("[data-tip]");
+
+    if (rows.length < 2){
+      plot.innerHTML = '<div class="empty-chart">记满 2 晚就会出现曲线<br>现在有 ' + rows.length + ' 晚</div>';
+      return;
+    }
+
+    var W = 320, H = 142, L = 34, R = 12, T = 12, B = 24;
+    var x0 = L, x1 = W - R, y0 = T, y1 = H - B;
+    var isLat = kind === "lat";
+    var vals = rows.map(function(r){ return isLat ? r.lat : r.dur / 60; });
+    var goal = isLat ? LAT_GATE : SLEEP_GOAL;
+    var lo, hi;
+    if (isLat){
+      lo = 0;
+      hi = Math.max(45, Math.ceil(Math.max.apply(null, vals) / 15) * 15);
+    } else {
+      lo = Math.min(6, Math.floor(Math.min.apply(null, vals)));
+      hi = Math.max(11, Math.ceil(Math.max.apply(null, vals)));
+    }
+    var X = function(i){ return x0 + (x1 - x0) * (i / (rows.length - 1)); };
+    var Y = function(v){ return y1 - (y1 - y0) * ((v - lo) / (hi - lo)); };
+
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' +
+            (isLat ? "入睡用时随时间变化" : "睡眠时长随时间变化") + '">';
+
+    [lo, hi].forEach(function(t){
+      s += '<line class="gridline" x1="' + x0 + '" y1="' + Y(t) + '" x2="' + x1 + '" y2="' + Y(t) + '"/>';
+      s += '<text class="tick" x="' + (x0 - 6) + '" y="' + (Y(t) + 3) + '" text-anchor="end">' +
+           (isLat ? t : t + "h") + '</text>';
+    });
+    s += '<line class="target" x1="' + x0 + '" y1="' + Y(goal) + '" x2="' + x1 + '" y2="' + Y(goal) + '"/>';
+    s += '<text class="tick goal" x="' + (x0 - 6) + '" y="' + (Y(goal) + 3) + '" text-anchor="end">' +
+         (isLat ? goal : goal + "h") + '</text>';
+    s += '<line class="axis" x1="' + x0 + '" y1="' + y1 + '" x2="' + x1 + '" y2="' + y1 + '"/>';
+
+    s += '<polyline class="series" points="' +
+         rows.map(function(r, i){ return X(i) + "," + Y(vals[i]); }).join(" ") + '"/>';
+
+    rows.forEach(function(r, i){
+      var good = isLat ? r.ok : (r.dur / 60) >= SLEEP_GOAL;
+      s += '<circle class="pt' + (good ? "" : " miss") + '" cx="' + X(i) + '" cy="' + Y(vals[i]) + '" r="4"/>';
+      s += '<circle class="hit" cx="' + X(i) + '" cy="' + Y(vals[i]) + '" r="11" ' +
+           'data-i="' + i + '" tabindex="0"/>';
+    });
+
+    [0, rows.length - 1].forEach(function(i){
+      s += '<text class="tick" x="' + X(i) + '" y="' + (y1 + 13) + '" text-anchor="' +
+           (i === 0 ? "start" : "end") + '">' + mmdd(rows[i].date) + '</text>';
+    });
+    s += '</svg>';
+    plot.innerHTML = s;
+
+    plot.querySelectorAll(".hit").forEach(function(node){
+      function show(){
+        var r = rows[+node.getAttribute("data-i")];
+        var br = node.getBoundingClientRect(), hr = host.getBoundingClientRect();
+        tip.innerHTML = mmdd(r.date) + " · " +
+          (isLat ? r.lat + " 分钟睡着" : hrs(r.dur) + " 小时");
+        tip.style.left = (br.left + br.width / 2 - hr.left) + "px";
+        tip.style.top = (br.top - hr.top) + "px";
+        tip.classList.add("on");
+      }
+      function hide(){ tip.classList.remove("on"); }
+      node.addEventListener("mouseenter", show);
+      node.addEventListener("focus", show);
+      node.addEventListener("click", show);
+      node.addEventListener("mouseleave", hide);
+      node.addEventListener("blur", hide);
+    });
+  }
+
+  function renderRecent(rows){
+    var host = q("[data-recent]");
+    if (!rows.length){
+      host.innerHTML = '<div class="empty-chart">还没有记录</div>';
+      return;
+    }
+    var recent = rows.slice(-14).reverse();
+    var h = '<table class="recent"><thead><tr>' +
+            '<th>日期</th><th>上床</th><th>睡着</th><th>用时</th><th>睡了</th><th>通行券</th>' +
+            '</tr></thead><tbody>';
+    recent.forEach(function(r){
+      h += '<tr>' +
+        '<td class="n">' + mmdd(r.date) + '</td>' +
+        '<td class="n">' + r.bed + '</td>' +
+        '<td class="n">' + r.asleep + '</td>' +
+        '<td class="n' + (r.ok ? " hit-y" : "") + '">' + r.lat + ' 分' + (r.ok ? " ✓" : "") + '</td>' +
+        '<td class="n">' + hrs(r.dur) + ' h</td>' +
+        '<td>' + (r.pass ? "没用 ✓" : "用了") + '</td>' +
+        '</tr>';
+    });
+    host.innerHTML = h + '</tbody></table>';
+  }
+
+  /* ---- 存储：有 db 用 db，没有就退回本地，本地文件也能跑 ---- */
+  var state = { nights: {} };
+
+  function localRead(){
+    try {
+      var s = localStorage.getItem(STORE_KEY);
+      var d = s ? JSON.parse(s) : null;
+      return (d && d.nights) ? d : { nights: {} };
+    } catch (e) { return { nights: {} }; }
+  }
+  function localWrite(d){
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(d)); } catch (e) {}
+  }
+
+  var storeNote = q("[data-store-note]"), storeDot = q("[data-store-dot]");
+  var store = {
+    save: function(d){ localWrite(d); render(d.nights); return Promise.resolve(); }
+  };
+  function markLocal(){
+    storeDot.classList.remove("live");
+    storeNote.textContent = "数据存在这台设备的浏览器里（本地模式）。";
+  }
+  function markCloud(){
+    storeDot.classList.add("live");
+    storeNote.textContent = "数据存在云端，换设备也看得到。";
+  }
+
+  state = localRead();
+  render(state.nights);
+
+  if (window.claude && typeof window.claude.use === "function"){
+    window.claude.use("db").then(function(db){
+      if (!db) return markLocal();
+      var ref = db.doc("sleep/log");
+      store = { save: function(d){ return ref.set(d); } };
+      markCloud();
+      ref.onSnapshot(function(snap){
+        var d = snap.exists ? snap.data() : null;
+        var cloud = (d && d.nights) || null;
+        // 本地先记过、云端还是空的：把本地的推上去，别被空快照抹掉
+        if (!cloud && Object.keys(state.nights).length){
+          ref.set({ nights: state.nights });
+          return;
+        }
+        state = { nights: cloud || {} };
+        localWrite(state);
+        render(state.nights);
+      }, function(){
+        store = { save: function(x){ localWrite(x); render(x.nights); return Promise.resolve(); } };
+        markLocal();
+      });
+    }, markLocal);
+  } else {
+    markLocal();
+  }
+
+  /* ---- 记录表单 ---- */
+  var form = q("[data-log]");
+  var fDate = document.getElementById("f-date");
+  var fBed = document.getElementById("f-bed");
+  var fAsleep = document.getElementById("f-asleep");
+  var fWake = document.getElementById("f-wake");
+  var fPass = document.getElementById("f-pass");
+  var savedMsg = q("[data-saved]");
+
+  fDate.value = todayStr();
+  fWake.value = defaultWake(fDate.value);
+
+  fDate.addEventListener("change", function(){
+    if (!fDate.value) return;
+    var ex = state.nights[fDate.value];
+    fWake.value = ex ? ex.wake : defaultWake(fDate.value);
+    if (ex){
+      fBed.value = ex.bed; fAsleep.value = ex.asleep; fPass.checked = !!ex.pass;
+      savedMsg.textContent = "这一晚已经记过，改完再存会覆盖。";
+    } else {
+      savedMsg.textContent = "";
+    }
+  });
+
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    if (!fDate.value || !fBed.value || !fAsleep.value || !fWake.value) return;
+    state.nights[fDate.value] = {
+      bed: fBed.value, asleep: fAsleep.value, wake: fWake.value, pass: fPass.checked
+    };
+    localWrite(state);
+    render(state.nights);
+    savedMsg.textContent = "已保存 " + mmdd(fDate.value) + "。";
+    Promise.resolve(store.save({ nights: state.nights })).catch(function(){
+      savedMsg.textContent = "云端没存上，已经留在本地。";
+    });
+  });
+
+  /* ---- scale sheets to fit the screen column ---- */
+  function fit(){
+    document.querySelectorAll(".frame").forEach(function(f){
+      var sheet = f.querySelector(".sheet");
+      var scaler = f.querySelector(".scaler");
+      if (!sheet || !scaler) return;
+      scaler.style.transform = "none";
+      var w = sheet.offsetWidth, h = sheet.offsetHeight;
+      if (!w) return;
+      var s = Math.min(1, f.clientWidth / w);
+      scaler.style.transform = "scale(" + s + ")";
+      f.style.height = (h * s) + "px";
+    });
+  }
+  window.addEventListener("resize", fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  fit();
+
+  /* ---- print one sheet per job ---- */
+  var pageStyle = document.createElement("style");
+  document.head.appendChild(pageStyle);
+
+  document.querySelectorAll("[data-print]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var target = document.getElementById(btn.getAttribute("data-print"));
+      if (!target) return;
+      document.querySelectorAll(".frame").forEach(function(f){
+        f.classList.toggle("printing", f === target);
+      });
+      markPath(target);
+      pageStyle.textContent = "@page{size:A4 " + target.dataset.orient + ";margin:0}";
+      window.print();
+    });
+  });
+
+  /* Sheets are nested inside stages, so mark the chain of ancestors the
+     print stylesheet should keep. Deterministic — no :has() needed. */
+  function markPath(target){
+    clearPath();
+    for (var n = target; n && n !== document.body; n = n.parentElement){
+      n.classList.add("print-path");
+    }
+  }
+  function clearPath(){
+    document.querySelectorAll(".print-path").forEach(function(n){
+      n.classList.remove("print-path");
+    });
+  }
+
+  /* ?print=<sheet-id> —— 直接以“只印这一张”的状态加载，便于导出/验证 */
+  (function(){
+    var want = (location.search.match(/[?&]print=([^&]+)/) || [])[1];
+    if (!want) return;
+    var t = document.getElementById(decodeURIComponent(want));
+    if (!t) return;
+    t.classList.add("printing");
+    markPath(t);
+    pageStyle.textContent = "@page{size:A4 " + t.dataset.orient + ";margin:0}";
+  })();
+
+  window.addEventListener("afterprint", function(){
+    document.querySelectorAll(".frame").forEach(function(f){ f.classList.remove("printing"); });
+    clearPath();
+    fit();
+  });
+})();
+</script>
