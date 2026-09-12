@@ -197,7 +197,8 @@ p{margin:0}
 .cell svg{display:block;width:17mm;height:17mm}
 .writein{justify-content:center;font-size:3mm;color:#CFCBBF}
 
-.grid > .phase-end{border-bottom:.9mm solid var(--s-ink)}
+.af-grid .cell svg{width:20mm;height:20mm}
+.af-est{border-bottom:.9mm solid var(--s-ink)}
 .task .stage-tag{display:inline-block;font-size:2.6mm;color:var(--s-muted);border:.3mm solid var(--s-rule);padding:0 1.4mm;margin-left:2mm;vertical-align:1mm}
 
 /* evening footer */
@@ -377,8 +378,8 @@ p{margin:0}
 .rot svg{width:11mm;height:11mm}
 .rot.rest{color:#CFCBBF;font-size:3.1mm}
 .est{display:grid;border-left:.3mm solid var(--s-hair)}
-.est > *{border-right:.3mm solid var(--s-hair);border-bottom:.3mm solid var(--s-hair);display:flex;align-items:center;justify-content:center;font-size:3mm;color:#CFCBBF}
-.est .lb{justify-content:flex-start;padding-left:3.5mm;color:var(--s-muted);font-size:3.3mm;font-weight:500}
+.est > *{border-right:.3mm solid var(--s-hair);border-bottom:.3mm solid var(--s-hair);display:flex;align-items:center;justify-content:center;font-size:3mm;color:#CFCBBF;line-height:1;overflow:hidden}
+.est .lb{justify-content:flex-start;padding-left:3.5mm;color:var(--s-muted);font-size:3.3mm;font-weight:500;white-space:nowrap;overflow:hidden}
 
 .donecell{justify-content:center}
 .donecell span{display:block;width:8mm;height:8mm;border:.4mm solid #C6C2B6}
@@ -732,19 +733,21 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
             <div class="s-head">
               <div>
                 <div class="s-title" style="font-size:9mm">🌆 我的下午</div>
-                <div class="s-sub">到家 16:40 → 晚饭 18:30 · 中间 1 小时 50 分 · 第 ____ 周</div>
+                <div class="s-sub">到家吃点东西 → 出去动 → 作业 · 粗线以下晚饭后做 · 第 ____ 周</div>
               </div>
               <div class="s-name">名字 <span class="line"></span></div>
             </div>
             <div class="grid af-grid"></div>
+            <div class="est af-est"></div>
+            <div class="grid af-grid2"></div>
             <div class="ev-foot">
               <div class="rule-note" style="border-left:.5mm solid var(--s-rule)">
-                <b>先玩再干活。</b>他刚上完 8 小时学，一进门就要求坐下写字，
-                十次有九次会崩。「出去动一动」不只是休息——傍晚动过，晚上才睡得着。
+                <b>先玩再干活。</b>他刚上完 8 小时学，一进门就要求坐下写字，十次有九次会崩。
+                放书包、洗手、吃东西不用打卡——本来就会发生，这张表只标记需要推一把的事。
               </div>
               <div class="rule-note" style="border-left:.5mm solid var(--s-rule)">
-                <b>粗线以下先空着。</b>「今天练什么」到第 3 阶段才勾，
-                「明日装备」到第 2 阶段才勾。现在做到作业就收工，剩下的时间全是他的。
+                <b>别急着定作业要多久。</b>动作慢多半是睡不够——分心和启动困难都是缺觉的典型表现。
+                第 1 阶段把觉补回来之后，这个数字大概率会自己往下走，所以只记录，不设限。
               </div>
             </div>
           </div>
@@ -1118,11 +1121,6 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
       grid.appendChild(el("div","dh" + (d.we ? " we" : ""), d.t));
     });
   }
-  /* 一整行（标签 + 7 天）打上阶段分界 */
-  function markPhaseEnd(grid){
-    var k = grid.children, n = k.length;
-    for (var i = n - 8; i < n; i++) k[i].classList.add("phase-end");
-  }
   function taskRow(grid, icon, name, note, kind){
     grid.appendChild(el("div","task",
       '<span class="ic">' + icon + '</span><span>' + name +
@@ -1142,17 +1140,28 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);color:v
   taskRow(ev, "🎫", "通行券没用掉", "攒 5 张换奖励券");
 
   /* ---- 5. 下午流程条：16:40 到家 → 18:30 晚饭，把这 110 分钟排出结构 ---- */
+  // 只列有阻力的两件事：换衣服出门、坐下写作业。5 分钟的琐事不占格子。
   var af = document.querySelector(".af-grid");
   af.style.gridTemplateColumns = "62mm repeat(7,1fr)";
-  af.style.gridTemplateRows = "9mm repeat(6,23mm)";
+  af.style.gridTemplateRows = "9mm 32mm 32mm";
   dayHeaders(af);
-  taskRow(af, "🎒", "放书包 · 洗手", "5 分钟");
-  taskRow(af, "🍎", "吃点东西", "10 分钟 · 放学是真的饿");
   taskRow(af, "🏃", "出去动一动", "40 分钟 · 对晚上睡着最有帮助");
-  taskRow(af, "📚", "作业", "30 分钟");
-  markPhaseEnd(af);                       // ← 第 1 阶段做到这里
-  taskRow(af, "✍️", "今天练什么", "10 分钟<span class=\'stage-tag\'>第 3 阶段</span>");
-  taskRow(af, "📦", "明日装备", "15 分钟<span class=\'stage-tag\'>第 2 阶段</span>");
+  taskRow(af, "📚", "作业", "先猜要多久，再计时");
+
+  // 作业是最需要时间感的一件事，估时直接跟在它下面
+  var afe = document.querySelector(".af-est");
+  afe.style.gridTemplateColumns = "62mm repeat(7,1fr)";
+  afe.style.gridTemplateRows = "10mm 10mm";
+  afe.appendChild(el("div","lb","⏱️ 我猜要几分钟"));
+  for (var a1 = 0; a1 < 7; a1++) afe.appendChild(el("div",null,"＿＿"));
+  afe.appendChild(el("div","lb","✔️ 实际用了几分钟"));
+  for (var a2 = 0; a2 < 7; a2++) afe.appendChild(el("div",null,"＿＿"));
+
+  var af2 = document.querySelector(".af-grid2");
+  af2.style.gridTemplateColumns = "62mm repeat(7,1fr)";
+  af2.style.gridTemplateRows = "26mm 26mm";
+  taskRow(af2, "✍️", "今天练什么", "晚饭后<span class=\'stage-tag\'>第 3 阶段</span>");
+  taskRow(af2, "📦", "明日装备", "晚饭后<span class=\'stage-tag\'>第 2 阶段</span>");
 
   /* ---- 2. morning A5 ×2 ---- */
   document.querySelectorAll("[data-morning]").forEach(function(box){
